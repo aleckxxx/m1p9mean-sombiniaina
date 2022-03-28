@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Fugaz One");
+body {
+    min-height: 75rem;
+    padding-top: 5rem;
+  }
+body{
+  font-family: Montserrat!important;
+}
+.logo{
+  font-family: "Fugaz One";
+  font-size: 30px!important;
+}
+.navbar{
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+.navbar a{
+  font-weight: bold;
+  color:black;
+  font-size: 18px;
+}
+.navbar-nav a:hover{
+  color:black;
+  text-decoration: underline;
+}
+.navbar a:visited{
+  color: black;
+}
+.navbar-toggler-icon{
+  color: -internal-light-dark(white, black);
+}
+.collapse.navbar-collapse.show{
+  background-color:white;
+  height:90vh;
+}
+@media (min-width: 768px){
+  .navbar-nav {
+    position: absolute;
+    right: 20px;
+  }
+  .nav-item{
+    margin-right: 10px;
+  }
+}
+@media only screen and (max-width: 768px){
+  .nav-item{
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+}
