@@ -7,13 +7,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SignupFormComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

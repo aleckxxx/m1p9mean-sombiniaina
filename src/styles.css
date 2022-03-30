@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;0,800;1,100;1,200;1,300;1,600&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Fugaz One");
 .form-title{
     font-weight: 900;
@@ -78,29 +78,207 @@ label{
 .btn-lg{
     width: 100%;
 }
+.btn-color-scheme{
+  background-color: #E1B15F;
+  border-color: #E1B15F;
+  color:#fff;
+}
+.banner{
+  position:relative;
+  width: 100vw;
+}
+.banner-img{
+  position:  absolute;
+  filter:brightness(60%);
+  width: 100vw;
+  object-fit: cover;
+}
+.banner-title{
+  color: #fff;
+  font-weight: 800;
+  font-size: 35px;
+  text-align: center;
+}
+.banner-content{
+  position: absolute;
+  justify-items: center;
+  align-items: center;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+.search-bar{
+  margin-top: 50px;
+}
+.btn-no-margin{
+  margin: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.input-group > .form-control{
+  justify-content: center;
+}
+.search-bar > input, .search-bar > button{
+  height: 100px;
+}
+.restaurant-summary-container{
+  display: grid;
+  margin-top: 20px;
+}
+.restaurant-summary{
+  height: 400px;
+  width: 300px;
+  background-color: #F4DAAE;
+  border-radius: 10px;
+}
+.restaurant-image{
+  height: 60%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.restaurant-name{
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+.restaurant-information{
+  margin-left: 20px;
+  margin-top: 0px;
+}
+.restaurant-information >p {
+  margin: 0;
+}
+.restaurant-summary{
+  margin-bottom: 40px;
+}
+.small-lighter{
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 3px;
+}
+.btn-side{
+  margin-top: 5px;
+  margin-right: 15px;
+  float: right;
+}
+.pagination{
+  justify-content: center;
+}
+.page-link{
+  color:#202020!Important;
+}
+.active-page > .page-link{
+  background-color: #202020;
+  color:#fff!important;
+}
+.footer-container{
+  width: 100vw;
+  background-color: #202020;
+  color: #fff;
+  display: grid;
+  margin-top: 50px;
+}
+.footer-block-title{
+  font-weight: 800;
+  font-size: 31px;
+}
+.footer-block-body > p{
+  font-size: 14px;
+  font-weight: lighter;
+}
+.footer-line-header{
+  font-weight: 600;
+}
 @media (min-width: 768px){
+  .footer-container{
+    padding: 50px;
+    grid-template-columns: auto auto;
+  }
+  .banner{
+    height: 260px;
+  }
+  .banner-img{
+    height: 260px;
+  }
   .navbar-nav {
     position: absolute;
     right: 20px;
   }
-.number-prefix{
-    text-align: center;
-}
-.container-fluid{
-  margin-top: 0;
-}
+  .search-bar{
+    width: 70vw;
+  }
+  .number-prefix{
+      text-align: center;
+  }
+  .container-fluid{
+    margin-top: 0;
+  }
   .nav-item{
     margin-right: 10px;
   }
+  .restaurant-summary-container{
+    grid-template-columns: auto auto auto;
+  }
+  .fieldset-container{
+    grid-template-columns: auto auto;
+  }
+}
+.fieldset-container{
+  display: grid;
+}
+fieldset{
+  border-color: #202020;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+legend{
+  background-color: #202020;
+  padding: 5px;
+  color:#fff;
+  font-size: 12px;
+  font-weight: 700;
+  width: 60%;
+  border-radius: 10px;
+}
+.fieldset-element{
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: lighter;
 }
 @media only screen and (max-width: 768px){
+  .company-info{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .footer-container{
+    padding: 50px 20px;
+    grid-template-columns: auto;
+  }
   .nav-item{
     padding: 20px;
     text-align: center;
     justify-content: center;
   }
+  .fieldset-container{
+    grid-template-columns: auto auto auto;
+  }
   .side-presentation{
     visibility: hidden;
     width: 0;
+  }
+  .banner-img{
+    height: 300px;
+  }
+  .banner{
+    height: 300px;
+  }
+  .restaurant-summary-container{
+    justify-content: center;
   }
 }
