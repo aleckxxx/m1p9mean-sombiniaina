@@ -65,6 +65,13 @@ label{
     color: #fff;
 
 }
+.btn-absolute{
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+  margin-bottom: 2px!important;
+  font-size: 16px;
+}
 .btn{
     justify-content: center;
     align-items: center;
@@ -92,6 +99,15 @@ label{
   filter:brightness(60%);
   width: 100vw;
   object-fit: cover;
+}
+.banner-navigation{
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 20px;
+  color:#fff;
+}
+.banner-actual-page{
+  color:#E1B15F;
 }
 .banner-title{
   color: #fff;
@@ -193,7 +209,92 @@ label{
 .footer-line-header{
   font-weight: 600;
 }
+.menu-category-item{
+  font-size: 16px;
+  font-weight: 700;
+  display: grid;
+  padding: 10px;
+  margin-bottom: 12px;
+  grid-template-columns: auto auto;
+  border-bottom-color: #C4C4C4;
+  border-bottom-style: solid;
+}
+.menu-category-item:hover{
+  color:#fff;
+  background-color: #202020;
+}
+.menu-part-title{
+  font-weight: 600;
+  font-size: 30px;
+}
+.menu-part-dish{
+  display:grid;
+  margin-top: 20px;
+  height: 140px;
+}
+.dish-img{
+  width: 140px;
+  height: 140px;
+  object-fit: fit;
+  display: inline;
+}
+.dish-component-group{
+  display: inline;
+  padding-left: 10px;
+  height: 100%;
+}
+.badge{
+  color:#fff;
+  padding: 10px;
+  border-radius: 80px;
+}
+.badge-unactive{
+  background-color: #C4C4C4;
+
+}
+.menu-category-item-number{
+  text-align: right;
+}
+.dish-info{
+  height: 75vh;
+  width: 100%;
+  font-size: 14px;
+}
+
+.dish-name{
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.dish-description{
+  font-weight: 300;
+  font-size: 14px;
+}
+.bold{
+  font-weight: 700;
+}
+.cart{
+  display: flex;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #202020;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+
+}
 @media (min-width: 768px){
+  .menu-part-dish{
+    grid-template-columns: auto auto auto;
+  }
+  .dish-component-group{
+    columns: 2;
+  }
   .footer-container{
     padding: 50px;
     grid-template-columns: auto auto;
@@ -251,6 +352,9 @@ legend{
   font-weight: lighter;
 }
 @media only screen and (max-width: 768px){
+  .menu-part-dish{
+    grid-template-columns: auto auto;
+  }
   .company-info{
     align-items: center;
     justify-content: center;
