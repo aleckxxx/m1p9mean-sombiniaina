@@ -9,6 +9,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { CartOverviewComponent } from './cart-overview/cart-overview.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MenuComponent } from './menu/menu.component';
     SignupFormComponent,
     RestaurantListComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    CartOverviewComponent
   ],
   imports: [
     BrowserModule,

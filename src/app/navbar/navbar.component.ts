@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { CartOverviewComponent } from '../cart-overview/cart-overview.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed=true;
-  constructor() { }
+  modalOptions:NgbModalOptions;
 
-  ngOnInit(): void {
+  constructor(
+    private modalService: NgbModal
+  ){
+    this.modalOptions = {
+      backdrop:'static',
+      backdropClass:'customBackdrop'
+    }
   }
-
+  ngOnInit(): void {
+      
+  }
+  open() {
+    this.isNavbarCollapsed = true;
+    this.modalService.open(CartOverviewComponent);
+  }
 }
