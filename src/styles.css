@@ -344,10 +344,11 @@ label{
 .cart-resume-row > label{
   font-weight: 400;
 }
+.btn-no-space{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 @media (min-width: 768px){
-  .cart-resume{
-
-  }
   .modal-dialog{
     max-width: 80vw!important;
     margin:50px auto;
@@ -455,5 +456,8 @@ legend{
   }
   .restaurant-summary-container{
     justify-content: center;
+  }
+  .cart-item > div{
+    vertical-align: middle;
   }
 }

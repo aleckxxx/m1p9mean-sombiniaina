@@ -1,10 +1,20 @@
 <div class="modal-header">
-    <h4 class="modal-title">Panier</h4>
+    <h4 class="modal-title">Confirmation commande</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
+    <h4>Détail livraison</h4>
+    <form>
+        <div class="row">
+            <div class="col-md-4">
+                <label>adresse de livraison:</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+    </form>
+    <h4>Détail commande</h4>
     <div class="cart-items">
       <div class="cart-items-header">
         <label class="text-beginning">Libellé</label>
@@ -16,9 +26,7 @@
         <div class="cart-item-name text-beginning">Crevette au poulet</div>
         <div class="cart-item-price text-end">12 000</div>
         <div class="cart-item-quantity">
-          <button class="quantity-less btn btn-black">-</button>
-          <input class="quantity-number form-control" value="1">
-          <button class="quantity-add btn btn-black">+</button>
+            1
         </div>
         <div class="cart-item-subtotal text-end">12 000</div>
       </div>
@@ -35,7 +43,8 @@
           <label class="bold">Total</label>
           <label class="bold">17 000</label>
         </div>
-        <button class="btn btn-color-scheme btn-full" (click)="checkout()">Confirmer</button>
+        <button class="btn btn-full btn-no-space btn-danger">Annuler</button>
+        <button class="btn btn-color-scheme btn-no-space btn-full">Commander</button>
       </div>
 
     </div>

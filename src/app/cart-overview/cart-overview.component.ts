@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CheckoutFormComponent } from '../checkout-form/checkout-form.component';
 
 @Component({
   selector: 'app-cart-overview',
@@ -8,10 +9,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CartOverviewComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal,private modalService: NgbModal) {}
 
   ngOnInit() {
   }
 
-
+  checkout(){
+    this.activeModal.close();
+    this.modalService.open(CheckoutFormComponent);
+  }
 }

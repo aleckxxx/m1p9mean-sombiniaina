@@ -10,6 +10,7 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { CartOverviewComponent } from './cart-overview/cart-overview.component';
+import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CartOverviewComponent } from './cart-overview/cart-overview.component';
     RestaurantListComponent,
     FooterComponent,
     MenuComponent,
-    CartOverviewComponent
+    CartOverviewComponent,
+    CheckoutFormComponent
   ],
   imports: [
     BrowserModule,
