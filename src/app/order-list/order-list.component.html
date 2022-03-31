@@ -1,0 +1,41 @@
+
+<div class="banner">
+    <img class="banner-img" src="assets/images/order-banner.jpg"/>
+    <div class="banner-content">
+        <div class="banner-title">mes commandes</div>
+    </div>       
+</div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-3 categories">
+            <fieldset>
+                <legend>filtres</legend>
+                <div class="fieldset-container">
+                    <div class="fieldset-element">
+                        <input type="checkbox" id="kraken" name="monster">
+                        <label for="kraken">En preparation</label><br/>
+                    </div>
+                    <div class="fieldset-element">
+                        <input type="checkbox" id="kraken" name="monster">
+                        <label for="kraken">En cours</label><br/>
+                    </div>
+                    <div class="fieldset-element">
+                        <input type="checkbox" id="kraken" name="monster">
+                        <label for="kraken">En route</label><br/>
+                    </div>
+                    <div class="fieldset-element">
+                        <input type="checkbox" id="kraken" name="monster">
+                        <label for="kraken">Livré</label><br/>
+                    </div>
+                    <div class="fieldset-element">
+                        <input type="checkbox" id="kraken" name="monster">
+                        <label for="kraken">Annulé</label><br/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-md-9 pl-5 pt-2">
+            <app-order-detail></app-order-detail>
+        </div>
+    </div>
+</div>

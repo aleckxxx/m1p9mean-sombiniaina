@@ -1,0 +1,26 @@
+<div class="order-id" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Commande #12345
+</div>
+<div class="order-detail" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <ul class="order-tracker">
+        <li>
+            <div class="status-finished">
+                En cours de préparation
+            </div>
+        </li>
+        <li>
+            <div class="status-finished">
+                En route
+            </div>
+        </li>
+        <li>
+            <div class="status-unfinished">
+                En livraison
+            </div>
+        </li>
+    </ul>
+    <div class="adress-info">
+        <div class="adress-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        Lot II F 14 AterB Andraisoro
+    </div>
+</div>

@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { CartOverviewComponent } from './cart-overview/cart-overview.component';
 import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
     FooterComponent,
     MenuComponent,
     CartOverviewComponent,
-    CheckoutFormComponent
+    CheckoutFormComponent,
+    OrderListComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
