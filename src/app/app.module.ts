@@ -13,6 +13,10 @@ import { CartOverviewComponent } from './cart-overview/cart-overview.component';
 import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +29,16 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     CartOverviewComponent,
     CheckoutFormComponent,
     OrderListComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

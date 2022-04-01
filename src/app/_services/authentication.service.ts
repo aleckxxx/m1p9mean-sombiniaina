@@ -1,0 +1,53 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
+import { environment } from '../../environments/environment';
+import { User } from '../_models/User';
+import { Role } from '../_models/Role';
+
+@Injectable({ providedIn: 'root' })
+export class AuthenticationService {
+  private user: User | undefined;
+    constructor(private http: HttpClient) {
+    }
+
+
+    login(email: string, password: string) {
+        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { email:email, password:password })
+            .pipe(map(res => {
+                let user =res.data;
+                // login successful if there's a jwt token in the response
+                if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    this.user = user;
+                }
+                return res;
+            }));
+    }
+
+    logout(){
+      this. user = undefined;
+    }
+    isAuthorized(roles: Role[] | undefined){
+      if(this.user) {
+        if(roles && roles.indexOf(this.user.userInfo.userType)=== -1){
+          return false;
+        }
+        return true;
+      }
+      return false;
+    }
+    getRole(): string | undefined{
+      if(this.user){
+        return this.user.userInfo.userType;
+      }
+      return undefined;
+    }
+    isAuthenticated():boolean{
+      if(this.user){
+        return true;
+      }
+      return false;
+    }
+}

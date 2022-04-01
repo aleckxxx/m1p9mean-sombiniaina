@@ -1,0 +1,25 @@
+<div clas="container-fluid">
+    <div class="row">
+        
+        <form #loginForm="ngForm" class="form-container col-md-4">
+            <h2 class="form-title">Connectez-vous!</h2>
+            <div class="alert alert-danger" *ngIf="error" role="alert">
+                {{error}}
+            </div>
+            <div class="form-group">
+                <label>E-mail</label>
+                <input class="form-control" type="text" [(ngModel)]="user.email" name="email" #email="ngModel">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input class="form-control" type="password" [(ngModel)]="user.password" name="password" #password="ngModel">
+            </div>
+            <button class="btn btn-black btn-lg btn-round" (click)="login(loginForm)">S'inscrire</button>
+            <p>Pas encore de compte ? <a>Inscrivez-vous!</a></p>
+        </form>
+        <div class="col-md-8 side-presentation">
+            <img src="assets/images/side-presentation.png">
+        </div>
+    </div>
+</div>
+
