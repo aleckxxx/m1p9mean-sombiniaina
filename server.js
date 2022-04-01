@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '/dist/m1p9meansombiniaina')));
 
 routeConfig(app);
 
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/m1p9meansombiniaina/index.html'));
 });
 
 
