@@ -363,6 +363,13 @@ label{
   border-style: solid;
   border-width: 1px;
 }
+.adress-icon{
+  display:inline;
+  font-size: 50px;
+}
+.adress-info{
+  font-weight: 600;
+}
 @media (min-width: 768px){
   .order-tracker{
     list-style-type: none;
@@ -405,6 +412,7 @@ label{
     display: flex;
     justify-content: center;
   }
+  
   .modal-dialog{
     max-width: 80vw!important;
     margin:50px auto;
