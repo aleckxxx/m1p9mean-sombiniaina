@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     OrderListComponent,
     OrderDetailComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AccountvalidationComponent
   ],
   imports: [
     BrowserModule,

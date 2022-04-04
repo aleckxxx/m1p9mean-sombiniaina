@@ -1,0 +1,14 @@
+<div *ngIf="loading" class="loading-body">
+     <div>Attendez un instant...</div>
+</div>
+<div *ngIf="!loading">
+    <div *ngIf="okay" class="account-validation">
+        <div class="validation-icon"><i class="fa fa-check-circle-o" aria-hidden="true"></i></div>
+        <div>Votre compte a été validé. Vous pouvez maintenant vous connecter!</div>
+    </div>
+    <div *ngIf="!okay" class="account-validation">
+        <div class="validation-icon"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div>Hum! Non. Bien tenté.</div>
+    </div>
+</div>
+

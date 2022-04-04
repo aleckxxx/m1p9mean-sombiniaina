@@ -2,36 +2,54 @@
     <div class="row">
         <div class="form-container col-md-4">
             <h2 class="form-title">Inscrivez-vous</h2>
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label>Noms</label>
-                    <input class="form-control" type="text">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Prénoms</label>
-                    <input class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>E-mail</label>
-                <input class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label>Numero de telephone</label>
+            <form #signupForm="ngForm">
                 <div class="row">
-                    <div class="col-md-3 number-prefix">
-                        +261
+                    <div class="col-md-6 form-group">
+                        <label>Noms</label>
+                        <input class="form-control" [ngClass]="{'is-invalid': errors.lastname}" type="text"  name="lastname" ngModel>
+                        <div *ngIf="errors.lastname" class="invalid-feedback d-block">
+                            {{errors.lastname.msg}}
+                        </div>
                     </div>
-                    <div class="col-md-5">
-                        <input class="form-control" type="text">
+                    <div class="col-md-6 form-group">
+                        <label>Prénoms</label>
+                        <input class="form-control" [ngClass]="{'is-invalid': errors.firstname}" type="text" name="firstname" ngModel>
+                        <div *ngIf="errors.firstname" class="invalid-feedback">
+                            {{errors.firstname.msg}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Mot de passe</label>
-                <input class="form-control" type="password">
-            </div>
-            <button class="btn btn-black btn-lg btn-round">S'inscrire</button>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input class="form-control" [ngClass]="{'is-invalid': errors.email}" type="text" name="email" ngModel>
+                    <div *ngIf="errors.email" class="invalid-feedback">
+                        {{errors.email.msg}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Numero de telephone</label>
+                    <div class="row">
+                        <div class="col-md-3 number-prefix">
+                            +261
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control" [ngClass]="{'is-invalid': errors.phonenumber}" type="text" name="phonenumber" ngModel>
+                            <div *ngIf="errors.phonenumber" class="invalid-feedback">
+                                {{errors.phonenumber.msg}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input class="form-control" [ngClass]="{'is-invalid': errors.password}" type="password" name="password" ngModel>
+                    <div *ngIf="errors.password" class="invalid-feedback">
+                        {{errors.password.msg}}
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-black btn-lg btn-round" (click)="signup(signupForm)">S'inscrire</button>
             <p>Déjà un compte ?<a>Connectez-vous</a></p>
         </div>
         <div class="col-md-8 side-presentation">
