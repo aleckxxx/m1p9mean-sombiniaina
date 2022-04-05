@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'accountvalidation/:token',
         component: AccountvalidationComponent
+      },
+      {
+        path: 'restaurantoverview',
+        component: RestaurantListComponent
       }
     ]
   }

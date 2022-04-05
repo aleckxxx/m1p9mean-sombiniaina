@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AccountvalidationComponent } from './accountvalidation/accountvalidatio
     OrderDetailComponent,
     LoginComponent,
     HomeComponent,
-    AccountvalidationComponent
+    AccountvalidationComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
