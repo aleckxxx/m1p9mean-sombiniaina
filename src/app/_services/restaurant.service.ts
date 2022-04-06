@@ -12,5 +12,8 @@ export class RestaurantService {
     return this.http.get(`${environment.apiUrl}/restaurants?query=${query}`);
   }
 
+  getDetail(restaurantId: string){
+    return this.http.get(`${environment.apiUrl}/restaurants/${restaurantId}`);
+  }
 
 }

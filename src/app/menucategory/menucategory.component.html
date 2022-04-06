@@ -1,0 +1,6 @@
+<div class="menu-part">
+    <div class="menu-part-title">{{category.name}}</div>
+    <div class="row">
+        <app-menudish *ngFor="let dish of category.dishes" [dish]="dish"></app-menudish>
+    </div>        
+</div>

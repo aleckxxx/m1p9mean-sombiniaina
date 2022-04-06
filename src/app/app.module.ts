@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { MenucategoryComponent } from './menucategory/menucategory.component';
+import { MenudishComponent } from './menudish/menudish.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     LoginComponent,
     HomeComponent,
     AccountvalidationComponent,
-    PaginationComponent
+    PaginationComponent,
+    MenucategoryComponent,
+    MenudishComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,8 @@ module.exports = router;
 
 router.get("/", searchRestaurant);
 
+router.get("/:id",getRestaurantDetail);
+
 async function searchRestaurant(req,res,next){
     let {query='',page=1} = req.query;
     restaurantService.searchRestaurant(query,page).then((response)=>{
@@ -14,4 +16,13 @@ async function searchRestaurant(req,res,next){
     }).catch((err)=>{
         next(err);
     });
+}
+
+async function getRestaurantDetail(req,res,next){
+    let restaurantId = req.params.id;
+    restaurantService.getRestaurantDetail(restaurantId).then((detail)=>{
+        res.json({status: 200, data: detail[0]});
+    }).catch((err=>{
+        next(err);
+    }));
 }

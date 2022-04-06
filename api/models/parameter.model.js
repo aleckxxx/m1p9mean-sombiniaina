@@ -7,4 +7,4 @@ const parameterSchema = new mongoose.Schema({
     }
 },{strict: false});
 
-module.exports = mongoose.model('parameters', parameterSchema)
+module.exports = mongoose.model('parameters', parameterSchema);

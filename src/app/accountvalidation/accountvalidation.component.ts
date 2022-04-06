@@ -14,7 +14,6 @@ export class AccountvalidationComponent implements OnInit {
 
   ngOnInit(): void {
     let token = this.route.snapshot.paramMap.get("token");
-    console.log(token);
     if(!token){
       this.loading = false;
       return;
