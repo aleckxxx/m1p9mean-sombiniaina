@@ -18,6 +18,7 @@ async function searchRestaurant(stringQuery,page=1){
     }
 }
 
+
 async function getRestaurantDetail(restaurantId){
     let query = [{
         $match:{

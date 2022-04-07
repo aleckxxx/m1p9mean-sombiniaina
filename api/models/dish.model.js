@@ -33,4 +33,4 @@ const dishSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('menucategories', menuCategorySchema);
+module.exports = mongoose.model('dishes', dishSchema);

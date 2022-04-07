@@ -7,7 +7,7 @@ function authorize(roles = []) {
     if (typeof roles === 'string') {
         roles = [roles];
     }
-
+    console.log("authorize entered");
     return [
         jwt({ secret, algorithms: ['HS256'] }),
         (req, res, next) => {
