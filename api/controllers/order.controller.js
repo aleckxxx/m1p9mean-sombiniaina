@@ -8,6 +8,7 @@ module.exports = router;
 
 router.post("/checkout", authorize("customer"), orderHelper.checkoutValidation, checkout);
 
+router.get("/",authorize("customer"),getOrders);
 async function checkout(req,res,next){
     let errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -19,4 +20,13 @@ async function checkout(req,res,next){
     }).catch((err)=>{
         next(err);
     });
+}
+
+async function getOrders(req, res, next){
+  const {sortBy = 'created_at', sortDirection = -1, filter = "" } = req.query;
+  orderService.getCustomerOrders(req.user.sub,filter,sortBy,sortDirection).then((data)=>{
+      res.json({status: 200, data: data});
+  }).catch((err)=>{
+    next(err);
+  });
 }

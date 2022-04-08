@@ -5,10 +5,18 @@ const RestaurantOrder = require('../models/restaurantorder.model');
 const parameterService = require('./parameter.service');
 const Cart = require('../models/cart.model');
 const sequenceHelper = require('../helpers/sequence.helper');
+const orderHelper = require('../helpers/order.helper');
+const { default: mongoose } = require('mongoose');
 module.exports = {
-    checkout
+    checkout,
+    getCustomerOrders
 };
 
+async function getCustomerOrders(id,filter, sortBy, sortDirection){
+    let query = orderHelper.getFilterQuery(filter);
+    query.clientId = mongoose.Types.ObjectId(id);
+    return Order.find(query,null,).sort([[sortBy, sortDirection]]);
+}
 async function checkout(data,userId){
     console.log(data);
     let price = await parameterService.getDeliveryPrice();
