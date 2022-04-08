@@ -6,6 +6,10 @@ const orderSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    number:{
+        type: String,
+        required: true
+    },
     client:{
         type: mongoose.Types.ObjectId,
         required: true,
@@ -13,7 +17,7 @@ const orderSchema = new mongoose.Schema({
     },
     deliveryAdress:{
         type: String,
-        required: false
+        required: true
     },
     deliveryFee:{
         type: Number,

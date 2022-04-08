@@ -10,8 +10,11 @@
         <div class="row">
             <div class="col-md-4">
                 <label>adresse de livraison:</label>
-                <input class="form-control" type="text" [(ngModel)]="adress">
-            </div>
+                <input class="form-control" type="text" [ngClass]="{'is-invalid': errors.adress}" [(ngModel)]="adress" [ngModelOptions]="{standalone: true}">
+                <div *ngIf="errors.adress" class="invalid-feedback d-block">
+                  {{errors.adress.msg}}
+              </div>
+              </div>
         </div>
     </form>
     <h4>Détail commande</h4>

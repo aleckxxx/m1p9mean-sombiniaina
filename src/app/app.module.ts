@@ -15,7 +15,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -25,6 +25,8 @@ import { CartRowComponent } from './cart-row/cart-row.component';
 import { CartRestaurantCategoryComponent } from './cart-restaurant-category/cart-restaurant-category.component';
 import { CheckoutCategoryComponent } from './checkout-category/checkout-category.component';
 import { CheckoutRowComponent } from './checkout-row/checkout-row.component';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,10 @@ import { CheckoutRowComponent } from './checkout-row/checkout-row.component';
     FormsModule, 
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,9 @@ async function authenticate(user){
     const password = crypto.createHash('md5').update(user.password).digest('hex');
     const registered = await User.findOne({email: user.email.toLowerCase(), encryptedPassword: password}).select("-encryptedPassword");
     if(registered){
-        const token = jwt.sign({sub: registered._id, role: registered.userType}, secret);
+        const token = jwt.sign({sub: registered._id, role: registered.userType}, secret,{
+            expiresIn: '1h'
+        });
         return {
             userInfo:registered, 
             token: token

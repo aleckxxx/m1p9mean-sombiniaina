@@ -4,22 +4,23 @@ const dish = require('../models/dish.model');
 const RestaurantOrder = require('../models/restaurantorder.model');
 const parameterService = require('./parameter.service');
 const Cart = require('../models/cart.model');
-const { default: mongoose } = require('mongoose');
-
+const sequenceHelper = require('../helpers/sequence.helper');
 module.exports = {
     checkout
 };
 
 async function checkout(data,userId){
+    console.log(data);
     let price = await parameterService.getDeliveryPrice();
     let cart = new Cart();
-    cart.restaurantItems = data;
+    cart.restaurantItems = data.restaurantItems;
     let cartPopulated = await cart.save().then(async (carts)=>{
         return await Cart.populate(carts,{path:'restaurantItems.items.dish',select: 'name price' }).then((docs)=>{
             return docs;
         });
     });
     let newOrder = new Order();
+    newOrder.deliveryAdress = data.adress;
     newOrder.client = userId;
     newOrder.deliveryFee = price;
     newOrder.restaurantItems = [];
@@ -40,6 +41,9 @@ async function checkout(data,userId){
         total += subtotal;
     }
     newOrder.total = total;
+    newOrder.confirmed = true;
+    newOrder.number = await sequenceHelper.getSequenceValue('order');
+    console.log(newOrder);
     await newOrder.save();
     RestaurantOrder.insertMany(restaurantOrders);
     return newOrder.save();
