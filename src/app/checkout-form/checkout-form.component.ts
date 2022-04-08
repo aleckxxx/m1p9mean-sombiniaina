@@ -27,6 +27,7 @@ export class CheckoutFormComponent implements OnInit {
       let okay = (data:any)=> {
         if(data["status"]==200){
           this.activeModal.close();
+          this.cartService.reset();
         }
         else{
           if(data["data"]["errors"]){

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { isThisTypeNode } from 'typescript';
 import { RequestFormatterHelper } from '../_helpers/requestformatter.helper';
 import { DishOrder } from '../_models/DishOrder';
 import { restaurantOrder } from '../_models/restaurantOrder';
@@ -28,7 +29,11 @@ export class CartService {
     this.assets.restaurants = restaurants;
     this.assets.dishes = dishes;
    }
-
+   reset(){
+     this.restaurantItems = [];
+     this.total = 0;
+     this.assets = {restaurants: {}, dishes: {}};
+   }
   addItemToCart(restaurantId: string,dishId: string, dishAsset: any){
     try{
       while(this.processing){}
