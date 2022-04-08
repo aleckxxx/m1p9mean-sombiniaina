@@ -6,10 +6,15 @@ import { environment } from '../../environments/environment';
 import { User } from '../_models/User';
 import { Role } from '../_models/Role';
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private user: User | undefined;
     constructor(private http: HttpClient) {
+      let registered = localStorage.getItem("user");
+      if(registered){
+        this.user = JSON.parse(registered);
+      }
     }
 
 
@@ -17,6 +22,7 @@ export class AuthenticationService {
         return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { email:email, password:password })
             .pipe(map(res => {
                 let user =res.data;
+                localStorage.setItem("user",JSON.stringify(user));
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -27,7 +33,8 @@ export class AuthenticationService {
     }
 
     logout(){
-      this. user = undefined;
+      localStorage.clear();
+      this.user = undefined;
     }
     isAuthorized(roles: Role[] | undefined){
       if(this.user) {
@@ -49,5 +56,11 @@ export class AuthenticationService {
         return true;
       }
       return false;
+    }
+    getToken():string{
+      if(this.user){
+        return this.user.token;
+      }
+      return '';
     }
 }

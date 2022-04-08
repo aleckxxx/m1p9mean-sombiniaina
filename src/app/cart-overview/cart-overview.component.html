@@ -5,39 +5,30 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="cart-items">
-      <div class="cart-items-header">
-        <label class="text-beginning">Libellé</label>
-        <label class="text-end">Prix</label>
-        <label class="text-center">Quantité</label>
-        <label class="text-end">Sous-total</label>
-      </div>
-      <div class="cart-item">
-        <div class="cart-item-name text-beginning">Crevette au poulet</div>
-        <div class="cart-item-price text-end">12 000</div>
-        <div class="cart-item-quantity">
-          <button class="quantity-less btn btn-black">-</button>
-          <input class="quantity-number form-control" value="1">
-          <button class="quantity-add btn btn-black">+</button>
+    <div *ngIf="restaurantOrders.length > 0">
+      <div class="cart-items">
+        <div class="cart-items-header">
+          <label class="text-beginning">Libellé</label>
+          <label class="text-end">Prix</label>
+          <label class="text-center">Quantité</label>
+          <label class="text-end">Sous-total</label>
         </div>
-        <div class="cart-item-subtotal text-end">12 000</div>
+       <app-cart-restaurant-category *ngFor="let order of restaurantOrders" [order]="order"></app-cart-restaurant-category>
+      </div>
+      <div class="row cart-resume">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+          <div class="cart-resume-row">
+            <label>Frais de livraison</label>
+            <label>{{deliveryFee  | number:'':'en'}}</label>
+          </div>
+          <div class="cart-resume-row">
+            <label class="bold">Total</label>
+            <label class="bold">{{total | number:'':'en'}}</label>
+          </div>
+          <button class="btn btn-color-scheme btn-full" (click)="checkout()">Confirmer</button>
+        </div>
       </div>
     </div>
-    <div class="row cart-resume">
-      <div class="col-md-9">
-      </div>
-      <div class="col-md-3">
-        <div class="cart-resume-row">
-          <label>Frais de livraison</label>
-          <label>5 000</label>
-        </div>
-        <div class="cart-resume-row">
-          <label class="bold">Total</label>
-          <label class="bold">17 000</label>
-        </div>
-        <button class="btn btn-color-scheme btn-full" (click)="checkout()">Confirmer</button>
-      </div>
-
-    </div>
-    
   </div>

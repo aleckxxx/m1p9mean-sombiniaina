@@ -5,15 +5,21 @@
       </span>
     </button>
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
-      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()">
-        <li class="nav-item"><a href="#">Restaurants</a></li>
-        <li class="nav-item"><a href="#">Mes commandes</a></li>
-        <li class="nav-item"><a href="#" (click)="open()">Panier</a></li>
-        <li class="nav-item"><a href="#">Se deconnecter</a></li>
+      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('customer')">
+        <li class="nav-item"><a [routerLink]="['/restaurantoverview']">Restaurants</a></li>
+        <li class="nav-item"><a [routerLink]="['/orders']">Mes commandes</a></li>
+        <li class="nav-item"><a (click)="open()">Panier</a></li>
+        <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
+      </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('restaurant')">
+        <li class="nav-item"><a>Dashboard</a></li>
+        <li class="nav-item"><a>Commandes</a></li>
+        <li class="nav-item"><a [routerLink]="['/restaurantmanager/dishcategories']">Gestion plats</a></li>
+        <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
       </ul>
       <ul class="navbar-nav mr-auto" *ngIf="!isAuthenticated()">
         <li class="nav-item"><a [routerLink]="['/signin']">Se connecter</a></li>
-        <li class="nav-item"><a href="#">S'inscrire</a></li>
+        <li class="nav-item"><a [routerLink]="['/signup']">S'inscrire</a></li>
       </ul>
     </div>
   </nav>

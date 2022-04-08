@@ -3,10 +3,10 @@
     <div class="banner-content">
         <div class="banner-title">restaurants</div>
         <div class="search-bar">
-            <form>
+            <form #searchForm="ngForm">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Restaurant, plat, endroit">
-                    <button class="btn btn-color-scheme btn-no-margin">Rechercher</button>
+                    <input type="text" class="form-control" placeholder="Restaurant, plat, endroit" name="query" ngModel>
+                    <button class="btn btn-color-scheme btn-no-margin" (click)="search(searchForm.value.query)">Rechercher</button>
                 </div>
             </form>
         </div>
@@ -35,52 +35,17 @@
         </div>
         <div class="col-md-9">
             <div class="restaurant-summary-container">
-                <div class="restaurant-summary">
+                <div *ngFor="let restaurant of searchResult.restaurants" class="restaurant-summary">
                     <img class="restaurant-image" src="assets/images/restaurant-image.jpg"/>
-                    <p class="restaurant-name">Pho Resto</p>
+                    <p class="restaurant-name">{{restaurant.name}}</p>
                     <div class="restaurant-information">
-                        <p class="restaurant-opening-day"><i class="fa fa-calendar-o"></i>  <span class="small-lighter">Lundi au vendredi</span> </p>
-                        <p class="restaurant-opening-hour"><i class="fa fa-clock-o"></i>  <span class="small-lighter">09 à 19h</span></p>
+                        <p class="restaurant-opening-day"><i class="fa fa-calendar-o"></i>  <span class="small-lighter">{{restaurant.adress}}</span> </p>
+                        <p class="restaurant-opening-hour"><i class="fa fa-clock-o"></i>  <span class="small-lighter">{{getStatut(restaurant.businessDays)}}</span></p>
                     </div>
-                    <button class="btn btn-round btn-side btn-black"><i class="fa fa-arrow-right"></i></button>
-                </div>
-           
-                <div class="restaurant-summary">
-                    <img class="restaurant-image" src="assets/images/restaurant-image.jpg"/>
-                    <p class="restaurant-name">Pho Resto</p>
-                    <div class="restaurant-information">
-                        <p class="restaurant-opening-day"><i class="fa fa-calendar-o"></i>  <span class="small-lighter">Lundi au vendredi</span> </p>
-                        <p class="restaurant-opening-hour"><i class="fa fa-clock-o"></i>  <span class="small-lighter">09 à 19h</span></p>
-                    </div>
-                    <button class="btn btn-round btn-side btn-black"><i class="fa fa-arrow-right"></i></button>
-                </div>
-            
-                <div class="restaurant-summary">
-                    <img class="restaurant-image" src="assets/images/restaurant-image.jpg"/>
-                    <p class="restaurant-name">Pho Resto</p>
-                    <div class="restaurant-information">
-                        <p class="restaurant-opening-day"><i class="fa fa-calendar-o"></i>  <span class="small-lighter">Lundi au vendredi</span> </p>
-                        <p class="restaurant-opening-hour"><i class="fa fa-clock-o"></i>  <span class="small-lighter">09 à 19h</span></p>
-                    </div>
-                    <button class="btn btn-round btn-side btn-black"><i class="fa fa-arrow-right"></i></button>
-                </div>
-            
-                <div class="restaurant-summary">
-                    <img class="restaurant-image" src="assets/images/restaurant-image.jpg"/>
-                    <p class="restaurant-name">Pho Resto</p>
-                    <div class="restaurant-information">
-                        <p class="restaurant-opening-day"><i class="fa fa-calendar-o"></i>  <span class="small-lighter">Lundi au vendredi</span> </p>
-                        <p class="restaurant-opening-hour"><i class="fa fa-clock-o"></i>  <span class="small-lighter">09 à 19h</span></p>
-                    </div>
-                    <button class="btn btn-round btn-side btn-black"><i class="fa fa-arrow-right"></i></button>
+                    <button class="btn btn-round btn-side btn-black" [routerLink]="['/restaurantdetail/',restaurant._id]"><i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
-            <ul class="pagination">
-                <li class="page-item active-page"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
-            </ul>
+            <app-pagination [totalPage]="searchResult.totalPages" [page]="searchResult.page"></app-pagination>
         </div>
     </div>
 </div>
