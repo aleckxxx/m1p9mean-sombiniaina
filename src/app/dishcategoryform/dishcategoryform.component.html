@@ -1,0 +1,13 @@
+<div class="mid-container">
+    <h1 class="title">{{title}}</h1>
+    <form #categoryForm="ngForm" class="form-container">
+        <div class="form-group">
+            <label>Nom</label>
+            <input class="form-control" [ngClass]="{'is-invalid': errors.name}" [value]="dishcategory.name" type="text" name="name" ngModel>
+            <div *ngIf="errors.name" class="invalid-feedback">
+                {{errors.name.msg}}
+            </div>
+        </div>
+        <button class="btn btn-black btn-lg btn-round" (click)="onAction(categoryForm)">{{action}}</button>
+    </form>
+</div>

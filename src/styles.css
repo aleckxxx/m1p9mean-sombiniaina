@@ -4,7 +4,10 @@
 .form-title{
     font-weight: 900;
 }
-
+.icon-avg{
+  font-size: 20px;
+  margin-left: 10px;
+}
 body {
   width: 100vw;
   overflow-x: hidden;

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
+import { DishcategorycreateComponent } from './dishcategorycreate/dishcategorycreate.component';
+import { DishcategorylistComponent } from './dishcategorylist/dishcategorylist.component';
+import { DishcategoryupdateComponent } from './dishcategoryupdate/dishcategoryupdate.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
@@ -56,7 +59,32 @@ const routes: Routes = [
     children:[
       {
         path: '',
-        component: RestaurantOrdersComponent
+        component: RestaurantOrdersComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.Restaurant] }
+      },
+      {
+        path: 'dishcategories',
+        children:[
+          {
+            path:'',
+            component: DishcategorylistComponent,
+            canActivate: [AuthGuard],
+            data:{roles: [Role.Restaurant] }
+          },
+          {
+            path:'new',
+            component: DishcategorycreateComponent,
+            canActivate: [AuthGuard],
+            data:{roles: [Role.Restaurant] }
+          },
+          {
+            path:'update/:id',
+            component: DishcategoryupdateComponent,
+            canActivate: [AuthGuard],
+            data:{roles: [Role.Restaurant] }
+          }
+        ]
       }
     ]
   }

@@ -30,6 +30,10 @@ import { ErrorInterceptor } from './_helpers/http.interceptor';
 import { RestaurantOrdersComponent } from './restaurant-orders/restaurant-orders.component';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { OrdermodalComponent } from './ordermodal/ordermodal.component';
+import { DishcategorylistComponent } from './dishcategorylist/dishcategorylist.component';
+import { DishcategoryformComponent } from './dishcategoryform/dishcategoryform.component';
+import { DishcategorycreateComponent } from './dishcategorycreate/dishcategorycreate.component';
+import { DishcategoryupdateComponent } from './dishcategoryupdate/dishcategoryupdate.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { OrdermodalComponent } from './ordermodal/ordermodal.component';
     CheckoutCategoryComponent,
     CheckoutRowComponent,
     RestaurantOrdersComponent,
-    OrdermodalComponent
+    OrdermodalComponent,
+    DishcategorylistComponent,
+    DishcategoryformComponent,
+    DishcategorycreateComponent,
+    DishcategoryupdateComponent
   ],
   imports: [
     BrowserModule,
