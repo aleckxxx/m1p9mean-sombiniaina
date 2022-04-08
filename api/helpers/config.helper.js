@@ -1,3 +1,3 @@
 module.exports = {
-  validationBaseUrl: 'http://localhost:4200/accountvalidation/'
+  validationBaseUrl: 'https://m1p9mean-sombiniaina.herokuapp.com/accountvalidation/'
 };
