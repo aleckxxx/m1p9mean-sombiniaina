@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { AuthGuard } from './_helpers/auth.guard';
+import { Role } from './_models/Role';
 
 const routes: Routes = [
   {
@@ -29,11 +31,15 @@ const routes: Routes = [
       },
       {
         path: 'restaurantoverview',
-        component: RestaurantListComponent
+        component: RestaurantListComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.Customer] }
       },
       {
         path: 'restaurantdetail/:id',
-        component: MenuComponent
+        component: MenuComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.Customer] }
       }
     ]
   }

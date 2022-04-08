@@ -12,3 +12,12 @@ async function getDeliveryPrice(){
         return 0;
     }
 }
+
+async function getParameter(name){
+    switch(name){
+        case 'deliveryfee':
+            return getDeliveryPrice();
+        default:
+            return {};
+    }
+}

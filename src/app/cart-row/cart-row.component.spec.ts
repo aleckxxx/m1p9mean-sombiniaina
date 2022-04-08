@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenudishComponent } from './menudish.component';
+import { CartRowComponent } from './cart-row.component';
 
-describe('MenudishComponent', () => {
-
-  let component: MenudishComponent;
-  let fixture: ComponentFixture<MenudishComponent>;
+describe('CartRowComponent', () => {
+  let component: CartRowComponent;
+  let fixture: ComponentFixture<CartRowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenudishComponent ]
+      declarations: [ CartRowComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MenudishComponent);
+    fixture = TestBed.createComponent(CartRowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

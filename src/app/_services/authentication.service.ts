@@ -27,7 +27,7 @@ export class AuthenticationService {
     }
 
     logout(){
-      this. user = undefined;
+      this.user = undefined;
     }
     isAuthorized(roles: Role[] | undefined){
       if(this.user) {
@@ -49,5 +49,11 @@ export class AuthenticationService {
         return true;
       }
       return false;
+    }
+    getToken():string{
+      if(this.user){
+        return this.user.token;
+      }
+      return '';
     }
 }

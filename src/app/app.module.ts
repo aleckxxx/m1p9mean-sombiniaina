@@ -21,6 +21,10 @@ import { AccountvalidationComponent } from './accountvalidation/accountvalidatio
 import { PaginationComponent } from './pagination/pagination.component';
 import { MenucategoryComponent } from './menucategory/menucategory.component';
 import { MenudishComponent } from './menudish/menudish.component';
+import { CartRowComponent } from './cart-row/cart-row.component';
+import { CartRestaurantCategoryComponent } from './cart-restaurant-category/cart-restaurant-category.component';
+import { CheckoutCategoryComponent } from './checkout-category/checkout-category.component';
+import { CheckoutRowComponent } from './checkout-row/checkout-row.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { MenudishComponent } from './menudish/menudish.component';
     AccountvalidationComponent,
     PaginationComponent,
     MenucategoryComponent,
-    MenudishComponent
+    MenudishComponent,
+    CartRowComponent,
+    CartRestaurantCategoryComponent,
+    CheckoutCategoryComponent,
+    CheckoutRowComponent
   ],
   imports: [
     BrowserModule,

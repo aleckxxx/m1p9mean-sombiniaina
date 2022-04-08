@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CartService } from '../_services/cart-service.service';
+
 
 @Component({
   selector: 'app-menudish',
@@ -6,10 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./menudish.component.css']
 })
 export class MenudishComponent implements OnInit {
+
   @Input() dish:any = {};
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
+  order(){
+    console.log(this.dish);
+    this.cartService.addItemToCart(this.dish.restaurantId,this.dish._id, this.dish);
+  }
 }

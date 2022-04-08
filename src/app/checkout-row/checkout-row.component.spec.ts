@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenudishComponent } from './menudish.component';
+import { CheckoutRowComponent } from './checkout-row.component';
 
-describe('MenudishComponent', () => {
-
-  let component: MenudishComponent;
-  let fixture: ComponentFixture<MenudishComponent>;
+describe('CheckoutRowComponent', () => {
+  let component: CheckoutRowComponent;
+  let fixture: ComponentFixture<CheckoutRowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MenudishComponent ]
+      declarations: [ CheckoutRowComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MenudishComponent);
+    fixture = TestBed.createComponent(CheckoutRowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

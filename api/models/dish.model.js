@@ -27,6 +27,10 @@ const dishSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    restaurantId:{
+        type: mongoose.Types.ObjectId,
+        required: true
+    },
     categoryId:{
         type: mongoose.Types.ObjectId,
         required: true

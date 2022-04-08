@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label>adresse de livraison:</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" [(ngModel)]="adress">
             </div>
         </div>
     </form>
@@ -22,14 +22,7 @@
         <label class="text-center">Quantité</label>
         <label class="text-end">Sous-total</label>
       </div>
-      <div class="cart-item">
-        <div class="cart-item-name text-beginning">Crevette au poulet</div>
-        <div class="cart-item-price text-end">12 000</div>
-        <div class="cart-item-quantity">
-            1
-        </div>
-        <div class="cart-item-subtotal text-end">12 000</div>
-      </div>
+      <app-checkout-category *ngFor="let order of restaurantOrders" [order]="order"></app-checkout-category>
     </div>
     <div class="row cart-resume">
       <div class="col-md-9">
@@ -37,14 +30,14 @@
       <div class="col-md-3">
         <div class="cart-resume-row">
           <label>Frais de livraison</label>
-          <label>5 000</label>
+          <label>{{deliveryFee  | number:'':'en'}}</label>
         </div>
         <div class="cart-resume-row">
           <label class="bold">Total</label>
-          <label class="bold">17 000</label>
+          <label class="bold">{{total | number:'':'en'}}</label>
         </div>
-        <button class="btn btn-full btn-no-space btn-danger">Annuler</button>
-        <button class="btn btn-color-scheme btn-no-space btn-full">Commander</button>
+        <button class="btn btn-full btn-no-space btn-danger" (click)="activeModal.dismiss('Cross click')">Annuler</button>
+        <button class="btn btn-color-scheme btn-no-space btn-full" (click)="checkout()">Commander</button>
       </div>
 
     </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
-import { CartOverviewComponent } from '../cart-overview/cart-overview.component';
 import { AuthenticationService } from '../_services/authentication.service';
 import { Role } from '../_models/Role';
+import { CartOverviewComponent } from '../cart-overview/cart-overview.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
