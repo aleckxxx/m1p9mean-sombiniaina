@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-b
 import { AuthenticationService } from '../_services/authentication.service';
 import { Role } from '../_models/Role';
 import { CartOverviewComponent } from '../cart-overview/cart-overview.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -11,7 +12,7 @@ import { CartOverviewComponent } from '../cart-overview/cart-overview.component'
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed=true;
   modalOptions:NgbModalOptions;
-  constructor(private authService: AuthenticationService ,private modalService: NgbModal){
+  constructor(private authService: AuthenticationService ,private modalService: NgbModal, private router : Router){
     this.modalOptions = {
       backdrop:'static',
       backdropClass:'customBackdrop'
@@ -26,5 +27,9 @@ export class NavbarComponent implements OnInit {
   open() {
     this.isNavbarCollapsed = true;
     this.modalService.open(CartOverviewComponent);
+  }
+  logout(){
+    this.authService.logout();
+    this.router.navigateByUrl("/signin");
   }
 }

@@ -7,9 +7,9 @@
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
       <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()">
         <li class="nav-item"><a [routerLink]="['/restaurantoverview']">Restaurants</a></li>
-        <li class="nav-item"><a [routerLink]="['/']">Mes commandes</a></li>
+        <li class="nav-item"><a [routerLink]="['/orders']">Mes commandes</a></li>
         <li class="nav-item"><a (click)="open()">Panier</a></li>
-        <li class="nav-item"><a href="#">Se deconnecter</a></li>
+        <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
       </ul>
       <ul class="navbar-nav mr-auto" *ngIf="!isAuthenticated()">
         <li class="nav-item"><a [routerLink]="['/signin']">Se connecter</a></li>

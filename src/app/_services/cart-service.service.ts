@@ -24,10 +24,18 @@ export class CartService {
       this.deliveryFee = reponse["data"];
       this.total+= this.deliveryFee;
     });
-    let restaurants: any = {};
-    let dishes: any = {};
-    this.assets.restaurants = restaurants;
-    this.assets.dishes = dishes;
+    let localCart = localStorage.getItem("cart");
+    let localAsset = localStorage.getItem("assets");
+    if(localCart && localAsset){
+      this.assets = JSON.parse(localAsset);
+      this.restaurantItems = JSON.parse(localCart);
+    }
+    else{
+      let restaurants: any = {};
+      let dishes: any = {};
+      this.assets.restaurants = restaurants;
+      this.assets.dishes = dishes;
+    }
    }
    reset(){
      this.restaurantItems = [];
@@ -45,6 +53,8 @@ export class CartService {
       this.total += this.assets.dishes[dishId].dishInfo.price;
       this.itemNumber++;
       this.cartUpdate.next(this.restaurantItems[restaurantIndex].items[dishIndex]);
+      localStorage.setItem("assets",JSON.stringify(this.assets));
+      localStorage.setItem("cart",JSON.stringify(this.restaurantItems));
       this.processing = false;
     }
     catch(err){
@@ -64,6 +74,8 @@ export class CartService {
       this.itemNumber--;
       if(quantity!=0)
         this.cartUpdate.next(this.restaurantItems[restaurantIndex].items[dishIndex]);
+      localStorage.setItem("assets",JSON.stringify(this.assets));
+      localStorage.setItem("cart",JSON.stringify(this.restaurantItems));
       this.processing = false;
     }
     catch(err){

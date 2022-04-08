@@ -12,30 +12,22 @@
                 <legend>filtres</legend>
                 <div class="fieldset-container">
                     <div class="fieldset-element">
-                        <input type="checkbox" id="kraken" name="monster">
+                        <input type="radio" id="pending">
                         <label for="kraken">En preparation</label><br/>
                     </div>
                     <div class="fieldset-element">
-                        <input type="checkbox" id="kraken" name="monster">
-                        <label for="kraken">En cours</label><br/>
-                    </div>
-                    <div class="fieldset-element">
-                        <input type="checkbox" id="kraken" name="monster">
-                        <label for="kraken">En route</label><br/>
-                    </div>
-                    <div class="fieldset-element">
-                        <input type="checkbox" id="kraken" name="monster">
+                        <input type="radio" id="finished">
                         <label for="kraken">Livré</label><br/>
                     </div>
                     <div class="fieldset-element">
-                        <input type="checkbox" id="kraken" name="monster">
-                        <label for="kraken">Annulé</label><br/>
+                        <input type="radio" id="on_the_way">
+                        <label for="kraken">En route</label><br/>
                     </div>
                 </div>
             </fieldset>
         </div>
         <div class="col-md-9 pl-5 pt-2">
-            <app-order-detail></app-order-detail>
+            <app-order-detail *ngFor="let order of orders" [order]="order"></app-order-detail>
         </div>
     </div>
 </div>

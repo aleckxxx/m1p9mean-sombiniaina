@@ -1,5 +1,5 @@
 <div class="order-id" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Commande #12345
+    Commande {{order.number}}
 </div>
 <div class="order-detail" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
     <ul class="order-tracker">
@@ -9,18 +9,50 @@
             </div>
         </li>
         <li>
-            <div class="status-finished">
+            <div [ngClass]="{'status-finished': order.preparationDate, 'status-unfinished': !order.preparationDate}">
                 En route
             </div>
         </li>
         <li>
-            <div class="status-unfinished">
-                En livraison
+            <div [ngClass]="{'status-finished': order.deliveryDate, 'status-unfinished': !order.deliveryDate}">
+                Livré
             </div>
         </li>
     </ul>
     <div class="adress-info">
         <div class="adress-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-        Lot II F 14 AterB Andraisoro
+        {{order.deliveryAdress}}
+    </div>
+    <div class="cart-items">
+        <div class="cart-items-header">
+            <label class="text-beginning">Libellé</label>
+            <label class="text-end">Prix</label>
+            <label class="text-center">Quantité</label>
+            <label class="text-end">Sous-total</label>
+        </div>
+        <div *ngFor="let restaurantItem of order.restaurantItems">
+            <div *ngFor="let item of restaurantItem.items">
+                <div class="cart-item-name text-beginning">{{item.dish.name}}</div>
+                <div class="cart-item-price text-end">>{{item.dish.price | number:'':'en'}}</div>
+                <div class="cart-item-quantity">
+                    {{item.quantity}}
+                </div>
+                <div class="cart-item-subtotal text-end">{{getSubtotal(item.dish.price,item.quantity) | number:'':'en' }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cart-resume">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+          <div class="cart-resume-row">
+            <label>Frais de livraison</label>
+            <label>{{order.deliveryFee  | number:'':'en'}}</label>
+          </div>
+          <div class="cart-resume-row">
+            <label class="bold">Total</label>
+            <label class="bold">{{order.total | number:'':'en'}}</label>
+          </div>
+        </div>
     </div>
 </div>
