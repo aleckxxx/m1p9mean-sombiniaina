@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { RestaurantOrdersComponent } from './restaurant-orders/restaurant-orders.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { Role } from './_models/Role';
@@ -47,6 +48,15 @@ const routes: Routes = [
         component: OrderListComponent,
         canActivate: [AuthGuard],
         data:{roles: [Role.Customer] }
+      }
+    ]
+  },
+  {
+    path:'restaurantmanager',
+    children:[
+      {
+        path: '',
+        component: RestaurantOrdersComponent
       }
     ]
   }

@@ -5,10 +5,16 @@
       </span>
     </button>
     <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
-      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()">
+      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('customer')">
         <li class="nav-item"><a [routerLink]="['/restaurantoverview']">Restaurants</a></li>
         <li class="nav-item"><a [routerLink]="['/orders']">Mes commandes</a></li>
         <li class="nav-item"><a (click)="open()">Panier</a></li>
+        <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
+      </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('restaurant')">
+        <li class="nav-item"><a>Dashboard</a></li>
+        <li class="nav-item"><a>Commandes</a></li>
+        <li class="nav-item"><a>Gestion plats</a></li>
         <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
       </ul>
       <ul class="navbar-nav mr-auto" *ngIf="!isAuthenticated()">

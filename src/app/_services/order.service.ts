@@ -13,7 +13,15 @@ export class OrderService {
   getCustomerOrders(filter='',sortBy='created_at',sortDirection=-1){
     return this.http.get(`${environment.apiUrl}/orders/?${this.requestBuilder(filter,sortBy,sortDirection)}`);
   }
-
+  finishPreparationOrder(orderId: string){
+    return this.http.post(`${environment.apiUrl}/restaurantorders/finish`,{orderId: orderId});
+  }
+  getRestaurantOrders(){
+    return this.http.get(`${environment.apiUrl}/restaurantorders`);
+  }
+  getRestaurantOrder(orderId:string){
+    return this.http.get(`${environment.apiUrl}/restaurantorders/${orderId}`);
+  }
   private requestBuilder(filter:string,sortBy:string, sortDirection:number){
     let str = '';
     if(filter!==''){

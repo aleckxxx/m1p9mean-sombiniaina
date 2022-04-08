@@ -24,6 +24,9 @@ export class NavbarComponent implements OnInit {
   isAuthenticated(){
     return this.authService.isAuthenticated();
   }
+  isAuthorized(role:string){
+    return this.authService.getRole() === role;
+  }
   open() {
     this.isNavbarCollapsed = true;
     this.modalService.open(CartOverviewComponent);

@@ -32,6 +32,7 @@ async function checkout(data,userId){
     newOrder.client = userId;
     newOrder.deliveryFee = price;
     newOrder.restaurantItems = [];
+    newOrder.number = await sequenceHelper.getSequenceValue('order');
     let restaurantOrders = [];
     let total = price;
     for(let restaurantItem of cartPopulated.restaurantItems){
@@ -45,12 +46,12 @@ async function checkout(data,userId){
         let newRestaurantOrder = new RestaurantOrder(newRestaurantItem);
         newRestaurantOrder.client = userId;
         newRestaurantOrder.orderId = newOrder._id;
+        newRestaurantOrder.number = newOrder.number;
         restaurantOrders.push(newRestaurantOrder);
         total += subtotal;
     }
     newOrder.total = total;
     newOrder.confirmed = true;
-    newOrder.number = await sequenceHelper.getSequenceValue('order');
     console.log(newOrder);
     await newOrder.save();
     RestaurantOrder.insertMany(restaurantOrders);

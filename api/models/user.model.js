@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: false,
         type: Boolean
+    },
+    restaurantId:{
+        required: false,
+        type: mongoose.Types.ObjectId
     }
 })
 

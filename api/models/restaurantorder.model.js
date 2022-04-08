@@ -5,6 +5,11 @@ const restaurantOrderSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         required:true
     },
+    created_at:{
+        type:Date,
+        required: true,
+        default: Date.now
+    },
     restaurantId:{
         type: mongoose.Types.ObjectId,
         required: true,
@@ -15,9 +20,17 @@ const restaurantOrderSchema = new mongoose.Schema({
         required: true,
         ref: 'users'
     },
+    number:{
+        required: true,
+        type: String
+    },
     restaurantTotal:{
         type: Number,
         required: true
+    },
+    preparationDate:{
+        type: Date,
+        required: false
     },
     items:[
         {
@@ -40,7 +53,7 @@ const restaurantOrderSchema = new mongoose.Schema({
     confirmed:{
         type:Boolean,
         required: true,
-        default: false
+        default: true
     }
 });
 

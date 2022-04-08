@@ -27,6 +27,9 @@ import { CheckoutCategoryComponent } from './checkout-category/checkout-category
 import { CheckoutRowComponent } from './checkout-row/checkout-row.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/http.interceptor';
+import { RestaurantOrdersComponent } from './restaurant-orders/restaurant-orders.component';
+import { NgDragDropModule } from 'ng-drag-drop';
+import { OrdermodalComponent } from './ordermodal/ordermodal.component';
 
 @NgModule({
   declarations: [
@@ -49,14 +52,17 @@ import { ErrorInterceptor } from './_helpers/http.interceptor';
     CartRowComponent,
     CartRestaurantCategoryComponent,
     CheckoutCategoryComponent,
-    CheckoutRowComponent
+    CheckoutRowComponent,
+    RestaurantOrdersComponent,
+    OrdermodalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

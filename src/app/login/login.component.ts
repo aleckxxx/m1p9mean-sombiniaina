@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Role } from '../_models/Role';
 import { AuthenticationService } from '../_services/authentication.service';
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     if(form.valid){
       let okay = (data:any)=>{
         if(data["status"]==200){
-          this.route.navigateByUrl("/");
+          this.navigateAccordingToRole();
         }
         else{
           this.error = data["message"]; 
@@ -29,6 +30,21 @@ export class LoginComponent implements OnInit {
           console.log(err);
       }
       this.authService.login(this.user.email,this.user.password).subscribe(okay,notokay);
+    }
+  }
+  navigateAccordingToRole(){
+    let role = this.authService.getRole();
+    if(Role.Admin){
+      this.route.navigateByUrl("/admin");
+    }
+    else if(Role.Restaurant){
+      this.route.navigateByUrl("/restaurantmanager");
+    }
+    else if(Role.DeliveryGuy){
+      this.route.navigateByUrl("/delivery");
+    }
+    else{
+      this.route.navigateByUrl("/");
     }
   }
 }
