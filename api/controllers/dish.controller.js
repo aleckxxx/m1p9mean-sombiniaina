@@ -8,7 +8,6 @@ const uploadHelper = require('../helpers/upload.helper');
 module.exports = router;
 
 
-
 router.get("/:id",authorize("restaurant"),getById);
 
 

@@ -38,6 +38,9 @@ import { DetailcategoryComponent } from './detailcategory/detailcategory.compone
 import { DishformComponent } from './dishform/dishform.component';
 import { DishcreateComponent } from './dishcreate/dishcreate.component';
 import { DishupdateComponent } from './dishupdate/dishupdate.component';
+import { AdminOrderViewerComponent } from './admin-order-viewer/admin-order-viewer.component';
+import { AdminOrderDetailComponent } from './admin-order-detail/admin-order-detail.component';
+import { AssignDeliveryComponent } from './assign-delivery/assign-delivery.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { DishupdateComponent } from './dishupdate/dishupdate.component';
     DetailcategoryComponent,
     DishformComponent,
     DishcreateComponent,
-    DishupdateComponent
+    DishupdateComponent,
+    AdminOrderViewerComponent,
+    AdminOrderDetailComponent,
+    AssignDeliveryComponent
   ],
   imports: [
     BrowserModule,

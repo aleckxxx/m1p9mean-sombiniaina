@@ -17,6 +17,16 @@
         <li class="nav-item"><a [routerLink]="['/restaurantmanager/dishcategories']">Gestion plats</a></li>
         <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
       </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('admin')">
+        <li class="nav-item"><a>Dashboard</a></li>
+        <li class="nav-item"><a [routerLink]="['/admin']">Commandes</a></li>
+        <li class="nav-item"><a>Gestion restaurants</a></li>
+        <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
+      </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('delivery')">
+        <li class="nav-item"><a>taches</a></li>
+        <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
+      </ul>
       <ul class="navbar-nav mr-auto" *ngIf="!isAuthenticated()">
         <li class="nav-item"><a [routerLink]="['/signin']">Se connecter</a></li>
         <li class="nav-item"><a [routerLink]="['/signup']">S'inscrire</a></li>

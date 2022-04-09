@@ -1,0 +1,45 @@
+<h1>Commandes d'aujourd'hui</h1>
+<div class="orders-container">    
+    <div class="row">
+        <div class="col-md-3 board">
+            <div class="board-header">
+                En préparation 
+            </div>
+            <div class="board-body">
+                <ul>
+                    <li class="draggable-item" *ngFor="let order of pendingOrders; let i = index" (click)="openModal(order,i)">Commande {{order.number}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 board">
+            <div class="board-header">
+                À Livrer
+            </div>
+            <div class="board-body">
+                <ul>
+                    <li class="draggable-item" *ngFor="let order of preparedOrders; let i = index" (click)="openModal(order,i)" [dragData]="{index: i, order: order}" draggable>Commande {{order.number}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 board">
+            <div class="board-header">
+                Livreur assigné
+            </div>
+            <div class="board-body" (onDrop)="onItemDrop($event)"  [dropScope]="dropAllowed" droppable>
+                <ul>
+                    <li class="draggable-item" *ngFor="let order of onTheWayOrders; let i = index" (click)="openModal(order,i)">Commande {{order.number}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3 board">
+            <div class="board-header">
+                Livré
+            </div>
+            <div class="board-body">
+                <ul>
+                    <li class="draggable-item" *ngFor="let order of finishedOrders; let i = index" (click)="openModal(order,i)">Commande {{order.number}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

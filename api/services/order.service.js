@@ -1,6 +1,6 @@
 
 const Order = require('../models/order.model');
-const dish = require('../models/dish.model');
+const User = require('../models/user.model');
 const RestaurantOrder = require('../models/restaurantorder.model');
 const parameterService = require('./parameter.service');
 const Cart = require('../models/cart.model');
@@ -9,13 +9,89 @@ const orderHelper = require('../helpers/order.helper');
 const { default: mongoose } = require('mongoose');
 module.exports = {
     checkout,
-    getCustomerOrders
+    getCustomerOrders,
+    findById,
+    update
 };
 
 async function getCustomerOrders(id,filter, sortBy, sortDirection){
     let query = orderHelper.getFilterQuery(filter);
     query.clientId = mongoose.Types.ObjectId(id);
-    return Order.find(query,null,).sort([[sortBy, sortDirection]]);
+    return Order.find(query).sort([[sortBy, sortDirection]]);
+}
+
+async function update(role, userId, body, id){
+    switch(role){
+        case 'admin':
+            return updateAdmin(body, id);
+        case 'delivery':
+            return updateDelivery(userId, body, id);
+        default:
+            return;
+    }
+}
+
+async function updateDelivery(userId,body,id){
+    return Order.findOneAndUpdate({_id: mongoose.Types.ObjectId(id),deliveryGuy: mongoose.Types.ObjectId(userId)},{deliveryDate: new Date()});
+}
+async function updateAdmin(body,id){
+    return Order.findOneAndUpdate({_id: mongoose.Types.ObjectId(id)},{deliveryGuy: body.deliveryGuy});
+}
+async function findById(role,userId, id){
+    switch(role){
+        case 'admin':
+            return findByIdAdmin(id);
+        case 'delivery':
+            return findByIdDelivery(userId, id);
+        default:
+            return findByIdCustomer(userId, id);
+    }
+}
+
+async function findByIdAdmin(id){
+    let result = await Order.findById(id).populate("client", "firstname lastname phonenumber")
+    .populate(
+        {
+            path: 'restaurantItems',
+            populate: {
+                path: 'restaurantId'
+            }
+        }
+    );
+    if(result.preparationDate&&result.deliveryGuy){
+        let deliveries = await User.find({userType: 'delivery'});
+        return {
+            order: result,
+            deliveries: deliveries
+        }
+    }
+    return result;
+}
+
+async function findByIdDelivery(userId, id){
+    let order = await Order.find({deliveryGuy: mongoose.Types.ObjectId(userId), _id: mongoose.Types.ObjectId(id)})
+    .populate("client", "firstname lastname phonenumber")
+    .populate(
+        {
+            path: 'restaurantItems',
+            populate: {
+                path: 'restaurantId'
+            }
+        }
+    );
+    if(order.length > 0){
+        return order[0];
+    }
+    return {};
+}
+
+async function findByIdCustomer(userId, id){
+    let order = await Order.find({client: mongoose.Types.ObjectId(userId), _id: mongoose.Types.ObjectId(id)});
+
+    if(order.length > 0){
+        return order[0];
+    }
+    return {};
 }
 async function checkout(data,userId){
     console.log(data);
