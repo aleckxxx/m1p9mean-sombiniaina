@@ -5,27 +5,26 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DishcategoryService {
+export class DishService {
 
   constructor(private http: HttpClient) { }
 
   create(body: any){
-    return this.http.post(`${environment.apiUrl}/dishcategories/`,body);
+    return this.http.post(`${environment.apiUrl}/dishes/`,body);
   }
   getAll(){
-     return this.http.get(`${environment.apiUrl}/dishcategories/`);
+     return this.http.get(`${environment.apiUrl}/dishes/`);
   }
   getById(id:string){
-    return this.http.get(`${environment.apiUrl}/dishcategories/${id}`);
+    return this.http.get(`${environment.apiUrl}/dishes/${id}`);
   }
-  getByIdDetailed(id: string){
-    return this.http.get(`${environment.apiUrl}/dishcategories/detailed/${id}`);
-  }
+  
   update(objectId: string,body: any){
-    return this.http.put(`${environment.apiUrl}/dishcategories/${objectId}`,body);
+    return this.http.put(`${environment.apiUrl}/dishes/${objectId}`,body);
   }
 
   delete(objectId: string){
     return this.http.delete(`${environment.apiUrl}/dishcategories/${objectId}`);
   }
+  
 }

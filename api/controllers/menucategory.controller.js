@@ -10,6 +10,8 @@ router.get("/",authorize("restaurant"),getAll);
 
 router.get("/:id",authorize("restaurant"),getById);
 
+router.get("/detailed/:id",authorize("restaurant"),getByIdDetailed);
+
 router.post("/",authorize("restaurant"),menuCategoryHelper.categoryValidation,insert);
 
 router.put("/:id",authorize("restaurant"),menuCategoryHelper.categoryValidation,update);
@@ -17,6 +19,14 @@ router.put("/:id",authorize("restaurant"),menuCategoryHelper.categoryValidation,
 router.delete("/:id",authorize("restaurant"), remove);
 
 const {validationResult} = require('express-validator');
+
+async function getByIdDetailed(req,res,next){
+    menuCategoryService.getByIdDetailed().then((value)=>{
+        res.json({status: 200, data: value});
+    }).catch((err)=>{
+        next(err);
+    })
+}
 
 async function getAll(req,res,next){
     menuCategoryService.getAll(req.user.sub).then((data)=>{

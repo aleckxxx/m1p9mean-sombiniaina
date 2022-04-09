@@ -7,7 +7,11 @@ module.exports = {
     getById,
     insert,
     update,
-    remove
+    remove,
+    getByIdDetailed
+}
+async function getByIdDetailed(id){
+    return MenuCategory.findOne({"_id": new mongoose.Types.ObjectId(id)}).populate("items");
 }
 async function getAll(userId){
     let userConnected = await User.findOne({_id: new mongoose.Types.ObjectId(userId)});
