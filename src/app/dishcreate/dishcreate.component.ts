@@ -31,7 +31,7 @@ export class DishcreateComponent implements OnInit {
     let okay = (data:any)=>{
       console.log(data);
       if(data["status"]==200){
-        this.router.navigateByUrl(`/restaurantmanager/dishcategories/${data["data"]["categoryId"]}`);
+        this.router.navigateByUrl(`/restaurantmanager/dishcategories/dishList/${data["data"]["categoryId"]}`);
       }
       else{
         if(data["data"]["errors"]){

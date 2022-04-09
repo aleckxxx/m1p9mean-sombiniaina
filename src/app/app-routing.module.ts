@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
+import { DetailcategoryComponent } from './detailcategory/detailcategory.component';
 import { DishcategorycreateComponent } from './dishcategorycreate/dishcategorycreate.component';
 import { DishcategorylistComponent } from './dishcategorylist/dishcategorylist.component';
 import { DishcategoryupdateComponent } from './dishcategoryupdate/dishcategoryupdate.component';
+import { DishcreateComponent } from './dishcreate/dishcreate.component';
+import { DishupdateComponent } from './dishupdate/dishupdate.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
@@ -64,11 +67,34 @@ const routes: Routes = [
         data:{roles: [Role.Restaurant] }
       },
       {
+        path:'dishes',
+        children:[
+          {
+            path:'new',
+            component: DishcreateComponent,
+            canActivate: [AuthGuard],
+            data:{roles: [Role.Restaurant] }
+          },
+          {
+            path:'update/:id',
+            component: DishupdateComponent,
+            canActivate: [AuthGuard],
+            data:{roles: [Role.Restaurant] }
+          }
+        ]
+      },
+      {
         path: 'dishcategories',
         children:[
           {
             path:'',
             component: DishcategorylistComponent,
+            canActivate: [AuthGuard],
+            data:{roles: [Role.Restaurant] }
+          },
+          {
+            path:'dishList/:id',
+            component: DetailcategoryComponent,
             canActivate: [AuthGuard],
             data:{roles: [Role.Restaurant] }
           },

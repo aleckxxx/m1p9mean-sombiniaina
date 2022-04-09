@@ -6,7 +6,7 @@ let storage = multer.memoryStorage();
 let uploadFile = multer({
   storage: storage,
   limits: { fileSize: maxSize },
-}).single("file");
+}).single("picture");
 
 let uploadFileMiddleware = util.promisify(uploadFile);
 module.exports = uploadFileMiddleware;

@@ -16,6 +16,7 @@ export class DetailcategoryComponent implements OnInit {
     let tempo =  this.snapshot.snapshot.paramMap.get("id");
     if(tempo){
       let okay = (data:any)=>{
+        console.log(data);
         if(data["status"]==200){
           this.category = data["data"];
         }
@@ -26,14 +27,14 @@ export class DetailcategoryComponent implements OnInit {
       let notokay = (err:any)=>{
           console.log(err);
       }
-      this.dishCategoryService.getByIdDetailed(this.id).subscribe(okay,notokay);
+      this.dishCategoryService.getByIdDetailed(tempo).subscribe(okay,notokay);
     }
   }
   delete(id: string, index: number){
     
   }
   redirectUpdate(id:string){
-    this.router.navigateByUrl(`/restaurantmanager/dishes/${id}`);
+    this.router.navigateByUrl(`/restaurantmanager/dishes/update/${id}`);
   }
   createNew(){
     this.router.navigateByUrl('/restaurantmanager/dishes/new');

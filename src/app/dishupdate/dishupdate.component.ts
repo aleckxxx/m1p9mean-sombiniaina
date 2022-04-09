@@ -19,6 +19,7 @@ export class DishupdateComponent implements OnInit {
     if(tempo){
       this.id = tempo;
       let okay = (data:any)=>{
+        console.log(data);
         if(data["status"]==200){
           this.dish = data["data"]["dish"];
           this.categories = data["data"]["categories"];
@@ -37,7 +38,7 @@ export class DishupdateComponent implements OnInit {
   update(value: any){
     let okay = (data:any)=>{
       if(data["status"]==200){
-        this.router.navigateByUrl(`/restaurantmanager/dishcategories/${data["data"]["categoryId"]}`);
+        this.router.navigateByUrl(`/restaurantmanager/dishcategories/dishList/${data["data"]["categoryId"]}`);
       }
       else{
         if(data["data"]["errors"]){

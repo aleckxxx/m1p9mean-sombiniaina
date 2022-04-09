@@ -45,9 +45,9 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>:</label>
+                    <label>Catégorie:</label>
                     <select class="form-control" [ngClass]="{'is-invalid': errors.categoryId}" [value]="dish.categoryId" name="categoryId" ngModel>
-                        <option *ngFor="let category of categories" [value]="category._id">Oui</option>
+                        <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
                     </select>    
                 </div>
             </div>

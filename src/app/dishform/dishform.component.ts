@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-dishform',
   templateUrl: './dishform.component.html',
@@ -25,8 +26,11 @@ export class DishformComponent implements OnInit {
       formData.append('picture',this.file);
     }
     for(let key of Object.keys(form.value)){
-      formData.append(key, form.value[key]);
+      if(form.value[key]){
+        formData.append(key, form.value[key]);
+      }
     }
+    console.log(formData);
     this.sender.emit(formData);
   }
 
