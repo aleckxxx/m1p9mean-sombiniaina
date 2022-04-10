@@ -4,6 +4,12 @@
 .content{
   min-height: 90vh;
 }
+.color-scheme-line{
+  background-color: #E1B15F;
+  width: 150px;
+  height:12px;
+
+}
 .form-title{
     font-weight: 900;
 }
@@ -479,7 +485,14 @@ label{
   width: 768px;
   margin:0 auto;
 }
+.cart-item-row{
+  display: grid;
+}
 @media (min-width: 768px){
+  .cart-item-row{
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+  }
   .order-tracker{
     list-style-type: none;
     position: relative;
@@ -590,6 +603,29 @@ legend{
   font-weight: lighter;
 }
 @media only screen and (max-width: 768px){
+  .order-tracker{
+    list-style-type: none;
+  }
+  .status-finished:before{
+    content: "\f00c"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: 1.3em; /* same as padding-left set on li */
+
+  }
+  .status-unfinished{
+    display: none;
+  }
+  .cart-items-header{
+    display: none;
+  }
+  .cart-item-row{
+    grid-auto-flow: row;
+  }
+  .cart-item-price{
+    display: none;
+  }
   .modal-dialog{
     max-width: 100vw!important;
     min-height: 100vh!important;
