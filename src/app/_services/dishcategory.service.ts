@@ -18,7 +18,9 @@ export class DishcategoryService {
   getById(id:string){
     return this.http.get(`${environment.apiUrl}/dishcategories/${id}`);
   }
-  
+  getByIdDetailed(id: string){
+    return this.http.get(`${environment.apiUrl}/dishcategories/${id}/?type=detailed`);
+  }
   update(objectId: string,body: any){
     return this.http.put(`${environment.apiUrl}/dishcategories/${objectId}`,body);
   }

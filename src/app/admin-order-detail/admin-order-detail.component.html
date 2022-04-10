@@ -1,0 +1,73 @@
+<div class="modal-header">
+    <h4 class="modal-title">Detail commande</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="loading"class="modal-body d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">En chargement...</span>
+    </div>
+  </div>
+  <div *ngIf="!loading" class="modal-body">
+    <h4>Détail livraison</h4>
+    <div class="row">
+        <div class="adress-info col-md-4">
+            <div class="adress-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            {{order.deliveryAdress}}
+        </div>
+        <div class="adress-info col-md-4">
+            <div class="adress-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <span>{{order.client.firstname}} {{order.client.lastname}}</span>
+            <span> +261 {{order.client.phoneNumber}}</span>
+        </div>
+    </div>
+    <h4>Détail commande</h4>
+    <div class="cart-items">
+        <div class="cart-items-header">
+            <label class="text-beginning">Libellé</label>
+            <label class="text-end">Prix</label>
+            <label class="text-center">Quantité</label>
+            <label class="text-end">Sous-total</label>
+        </div>
+        <div *ngFor="let restaurantItem of order.restaurantItems">
+            <p class="bold">
+                {{restaurantItem.restaurantId.name}} , {{restaurantItem.restaurantId.adress}}
+            </p>
+            <div *ngFor="let item of restaurantItem.items" class="cart-item">
+                <div class="cart-item-name text-beginning">{{item.dish.name}}</div>
+                <div class="cart-item-price text-end">>{{item.dish.price | number:'':'en'}}</div>
+                <div class="cart-item-quantity">
+                    {{item.quantity}}
+                </div>
+                <div class="cart-item-subtotal text-end">{{getSubtotal(item.dish.price,item.quantity) | number:'':'en' }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cart-resume">
+      <div class="col-md-9">
+      </div>
+      <div class="row cart-resume">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+          <div class="cart-resume-row">
+            <label>Frais de livraison</label>
+            <label>{{order.deliveryFee  | number:'':'en'}}</label>
+          </div>
+          <div class="cart-resume-row">
+            <label class="bold">Total</label>
+            <label class="bold">{{order.total | number:'':'en'}}</label>
+          </div>
+          <div *ngIf="order.preparationDate&&!order.deliveryGuy">
+            <select class="form-control" [ngClass]="{'is-invalid': errors.deliveryGuy}"  [(ngModel)]="deliveryId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let delivery of deliveries" [value]="delivery._id">{{delivery.firstname}} {{delivery.lastname}}</option>
+            </select>
+            <button class="btn btn-color-scheme btn-no-space btn-full" (click)="assign()">Assigner</button>
+          </div>
+        </div>
+       </div>
+
+    </div>
+    
+  </div>

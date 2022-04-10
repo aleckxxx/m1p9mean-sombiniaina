@@ -8,7 +8,12 @@ module.exports = router;
 
 router.post("/checkout", authorize("customer"), orderHelper.checkoutValidation, checkout);
 
-router.get("/",authorize("customer"),getOrders);
+router.get("/",authorize(["customer","admin","delivery"]),getOrders);
+
+router.get("/:id",authorize(["customer","admin","delivery"]),findById);
+
+router.put("/:id", authorize(["admin","delivery"]), updateOrder);
+
 async function checkout(req,res,next){
     let errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -22,9 +27,24 @@ async function checkout(req,res,next){
     });
 }
 
+async function updateOrder(req,res,next){
+    orderService.update(req.user.role, req.user.sub, req.body, req.params.id).then(()=>{
+        res.json({status: 200});
+    }).catch((err)=>{
+        next(err);
+    })
+}
+
+async function findById(req,res,next){
+    orderService.findById(req.user.role, req.user.sub, req.params.id).then((result)=>{
+        res.json({status: 200,data: result})
+    }).catch((err)=>{
+        next(err);
+    })
+}
 async function getOrders(req, res, next){
   const {sortBy = 'created_at', sortDirection = -1, filter = "" } = req.query;
-  orderService.getCustomerOrders(req.user.sub,filter,sortBy,sortDirection).then((data)=>{
+  orderService.getOrders(req.user.role,req.user.sub,filter,sortBy,sortDirection).then((data)=>{
       res.json({status: 200, data: data});
   }).catch((err)=>{
     next(err);

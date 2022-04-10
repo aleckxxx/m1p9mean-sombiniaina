@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let category of categories; let i = index">
-                <td>{{category.name}}</td>
+                <td><a [routerLink]="['/restaurantmanager/dishcategories/dishList/'+category._id]">{{category.name}}</a></td>
                 <td>
                     <i class="fa fa-pencil icon-avg" (click)="redirectUpdate(category._id)" aria-hidden="true"></i>
                     <i class="fa fa-trash icon-avg" (click)="delete(category._id,i)" aria-hidden="true"></i>

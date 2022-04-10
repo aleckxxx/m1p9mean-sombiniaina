@@ -2,6 +2,7 @@ const { default: mongoose } = require('mongoose');
 const RestaurantOrder = require('../models/restaurantorder.model');
 const Order = require('../models/order.model');
 const User = require('../models/user.model');
+const { jitOnlyGuardedExpression } = require('@angular/compiler/src/render3/util');
 
 module.exports = {
     getOrders,
@@ -18,12 +19,10 @@ async function getOrders(userId){
         {
             restaurantId: user.restaurantId,
             preparationDate:{$exists: false},
-            created_at: {$gte: dateMin, $lte: dateMax }
         }).select("_id number").sort([['created_at',1]]);
     let finishedOrders = await RestaurantOrder.find({
         restaurantId: user.restaurantId,
-        preparationDate:{$exists: true},
-        created_at: {$gte: dateMin, $lte: dateMax }
+        preparationDate:{$exists: true, $gte: dateMin, $lte: dateMax }
     }).select("_id number").sort([['created_at',1]]);
     return {
         pending: pendingOrders,
@@ -38,8 +37,15 @@ async function getOrderDetail(orderId){
 
 async function finishPreparation(objectId){
    let restOrder = await RestaurantOrder.findOneAndUpdate({_id: new mongoose.Types.ObjectId(objectId), preparationDate:{$exists: false}},{preparationDate: new Date() });
-   
    if(restOrder){
-      Order.update({_id: restOrder.orderId },{$inc:{preparationFinished: 1}});
-   }
+           finishOrder(restOrder);
+    }
+}
+
+async function finishOrder(restOrder){
+    let order =  await Order.findOneAndUpdate({_id: restOrder.orderId },{$inc:{preparationFinished: 1}},{new: true});
+    if(order.preparationFinished>=order.restaurantItems.length){
+        order.preparationDate = new Date();
+        await order.save();
+    }
 }

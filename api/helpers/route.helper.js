@@ -4,6 +4,7 @@ const orderRoutes = require('../controllers/order.controller');
 const parameterRoutes = require('../controllers/parameter.controller');
 const restaurantorderRoutes = require('../controllers/restaurantorder.controller');
 const menucategoryRoute = require('../controllers/menucategory.controller');
+const dishRoutes = require('../controllers/dish.controller');
 const prefix = '/api';
 
 function configureRoute(app){    
@@ -13,6 +14,7 @@ function configureRoute(app){
     app.use(`${prefix}/parameters`,parameterRoutes);
     app.use(`${prefix}/restaurantorders`, restaurantorderRoutes);
     app.use(`${prefix}/dishcategories`, menucategoryRoute);
+    app.use(`${prefix}/dishes`, dishRoutes);
 }
 
 module.exports = configureRoute;

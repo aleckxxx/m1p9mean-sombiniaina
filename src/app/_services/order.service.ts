@@ -9,7 +9,7 @@ export class OrderService {
   
   
   constructor(private http: HttpClient) { }
-
+  
   getCustomerOrders(filter='',sortBy='created_at',sortDirection=-1){
     return this.http.get(`${environment.apiUrl}/orders/?${this.requestBuilder(filter,sortBy,sortDirection)}`);
   }
@@ -22,6 +22,23 @@ export class OrderService {
   getRestaurantOrder(orderId:string){
     return this.http.get(`${environment.apiUrl}/restaurantorders/${orderId}`);
   }
+
+  getOrders(){
+    return this.http.get(`${environment.apiUrl}/orders/`);
+  }
+
+  getOrder(orderId:string){
+    return this.http.get(`${environment.apiUrl}/orders/${orderId}`);
+  }
+
+  assignOrder(orderId: string, deliveryGuyId: string){
+    return this.http.put(`${environment.apiUrl}/orders/${orderId}`,{deliveryGuy: deliveryGuyId});
+  }
+
+  finishDelivery(orderId: string){
+    return this.http.put(`${environment.apiUrl}/orders/${orderId}`,{});
+  }
+  
   private requestBuilder(filter:string,sortBy:string, sortDirection:number){
     let str = '';
     if(filter!==''){

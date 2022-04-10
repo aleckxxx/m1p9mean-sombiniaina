@@ -12,7 +12,8 @@ const menuCategorySchema = new mongoose.Schema({
     },
     items:[
         {
-            type: mongoose.Types.ObjectId
+            type: mongoose.Types.ObjectId,
+            ref: 'dishes'
         }
     ]
 });

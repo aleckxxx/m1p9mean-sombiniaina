@@ -34,6 +34,15 @@ import { DishcategorylistComponent } from './dishcategorylist/dishcategorylist.c
 import { DishcategoryformComponent } from './dishcategoryform/dishcategoryform.component';
 import { DishcategorycreateComponent } from './dishcategorycreate/dishcategorycreate.component';
 import { DishcategoryupdateComponent } from './dishcategoryupdate/dishcategoryupdate.component';
+import { DetailcategoryComponent } from './detailcategory/detailcategory.component';
+import { DishformComponent } from './dishform/dishform.component';
+import { DishcreateComponent } from './dishcreate/dishcreate.component';
+import { DishupdateComponent } from './dishupdate/dishupdate.component';
+import { AdminOrderViewerComponent } from './admin-order-viewer/admin-order-viewer.component';
+import { AdminOrderDetailComponent } from './admin-order-detail/admin-order-detail.component';
+import { AssignDeliveryComponent } from './assign-delivery/assign-delivery.component';
+import { DeliveryOrderListComponent } from './delivery-order-list/delivery-order-list.component';
+import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-order-detail.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +71,16 @@ import { DishcategoryupdateComponent } from './dishcategoryupdate/dishcategoryup
     DishcategorylistComponent,
     DishcategoryformComponent,
     DishcategorycreateComponent,
-    DishcategoryupdateComponent
+    DishcategoryupdateComponent,
+    DetailcategoryComponent,
+    DishformComponent,
+    DishcreateComponent,
+    DishupdateComponent,
+    AdminOrderViewerComponent,
+    AdminOrderDetailComponent,
+    AssignDeliveryComponent,
+    DeliveryOrderListComponent,
+    DeliveryOrderDetailComponent
   ],
   imports: [
     BrowserModule,

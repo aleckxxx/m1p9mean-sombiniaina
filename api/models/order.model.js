@@ -74,7 +74,7 @@ const orderSchema = new mongoose.Schema({
     confirmed:{
         type: Boolean,
         required: true,
-        default: false
+        default: true
     },
     deliveryGuy:{
         type: mongoose.Types.ObjectId,

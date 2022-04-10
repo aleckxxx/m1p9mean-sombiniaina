@@ -18,6 +18,7 @@ router.delete("/:id",authorize("restaurant"), remove);
 
 const {validationResult} = require('express-validator');
 
+
 async function getAll(req,res,next){
     menuCategoryService.getAll(req.user.sub).then((data)=>{
         console.log(data);
@@ -28,11 +29,22 @@ async function getAll(req,res,next){
 }
 
 async function getById(req,res,next){
-    menuCategoryService.getById(req.params.id).then((data)=>{
-        res.json({status: 200, data: data});
-    }).catch((err)=>{
-      next(err);
-    });
+    console.log(req.query);
+    if(req.query.type === 'detailed'){
+        menuCategoryService.getByIdDetailed(req.params.id).then((value)=>{
+            res.json({status: 200, data: value});
+        }).catch((err)=>{
+            next(err);
+        })
+    }
+    else{
+        menuCategoryService.getById(req.params.id).then((data)=>{
+            res.json({status: 200, data: data});
+        }).catch((err)=>{
+          next(err);
+        });
+    }
+    
 }
 
 async function insert(req,res,next){

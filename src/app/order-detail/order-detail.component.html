@@ -26,18 +26,22 @@
     <div class="cart-items">
         <div class="cart-items-header">
             <label class="text-beginning">Libellé</label>
-            <label class="text-end">Prix</label>
             <label class="text-center">Quantité</label>
             <label class="text-end">Sous-total</label>
+            <label class="text-end">Prix</label>
         </div>
         <div *ngFor="let restaurantItem of order.restaurantItems">
-            <div *ngFor="let item of restaurantItem.items">
-                <div class="cart-item-name text-beginning">{{item.dish.name}}</div>
-                <div class="cart-item-price text-end">>{{item.dish.price | number:'':'en'}}</div>
-                <div class="cart-item-quantity">
-                    {{item.quantity}}
+            <div *ngFor="let item of restaurantItem.items" class="cart-item">
+                <div class="cart-item-row">
+                    <div class="cart-item-name text-beginning">{{item.dish.name}}</div>
+                    <div class="cart-item-quantity">
+                        {{item.quantity}}
+                    </div>
                 </div>
-                <div class="cart-item-subtotal text-end">{{getSubtotal(item.dish.price,item.quantity) | number:'':'en' }}</div>
+                <div class="cart-item-row">
+                    <div class="cart-item-price text-end">{{item.dish.price | number:'':'en'}}</div>
+                    <div class="cart-item-subtotal text-end">{{getSubtotal(item.dish.price,item.quantity) | number:'':'en' }}</div>
+                </div>
             </div>
         </div>
     </div>
