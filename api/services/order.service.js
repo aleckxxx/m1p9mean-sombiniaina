@@ -9,14 +9,51 @@ const orderHelper = require('../helpers/order.helper');
 const { default: mongoose } = require('mongoose');
 module.exports = {
     checkout,
-    getCustomerOrders,
+    getOrders,
     findById,
     update
 };
 
+async function getOrders(role,userId, filter, sortBy, sortDirect){
+    switch(role){
+        case 'admin':
+            return getAdminOrders();
+        case 'delivery':
+            return getDeliveryOrders(userId);
+        default:
+            return getCustomerOrders(userId, filter, sortBy, sortDirect); 
+    }
+}
+async function getDeliveryOrders(userId){
+    return Order.find({deliveryGuy: new mongoose.Types.ObjectId(userId), deliveryDate: {$exists: false}}).sort([['created_at',1]]).populate("client", "firstname lastname phoneNumber")
+    .populate(
+        {
+            path: 'restaurantItems',
+            populate: {
+                path: 'restaurantId'
+            }
+        }
+    );
+}
+async function getAdminOrders(){
+    let dateMin = new Date();
+    dateMin.setHours(0,0,0,0);
+    let dateMax = new Date();
+    dateMax.setHours(23,59,59,59);
+    let pending = await Order.find({preparationDate: {$exists: false}}).select("_id number");
+    let ontheway = await Order.find({deliveryGuy: {$exists: true}, deliveryDate:  {$exists: false}}).select("_id number");
+    let prepared =await Order.find({preparationDate: {$exists: true}, deliveryGuy:{$exists: false}}).select("_id number");
+    let finished = await Order.find({preparationDate: {$exists: true},created_at: {$gte: dateMin , $lte: dateMax }});
+    return {
+        pending: pending,
+        ontheway: ontheway,
+        prepared: prepared,
+        finished: finished
+    };
+}
 async function getCustomerOrders(id,filter, sortBy, sortDirection){
     let query = orderHelper.getFilterQuery(filter);
-    query.clientId = mongoose.Types.ObjectId(id);
+    query.client = mongoose.Types.ObjectId(id);
     return Order.find(query).sort([[sortBy, sortDirection]]);
 }
 
@@ -32,10 +69,10 @@ async function update(role, userId, body, id){
 }
 
 async function updateDelivery(userId,body,id){
-    return Order.findOneAndUpdate({_id: mongoose.Types.ObjectId(id),deliveryGuy: mongoose.Types.ObjectId(userId)},{deliveryDate: new Date()});
+    return Order.findOneAndUpdate({_id: new mongoose.Types.ObjectId(id),deliveryGuy:  new  mongoose.Types.ObjectId(userId)},{deliveryDate: new Date()});
 }
 async function updateAdmin(body,id){
-    return Order.findOneAndUpdate({_id: mongoose.Types.ObjectId(id)},{deliveryGuy: body.deliveryGuy});
+    return Order.findOneAndUpdate({_id:  new  mongoose.Types.ObjectId(id)},{deliveryGuy: body.deliveryGuy});
 }
 async function findById(role,userId, id){
     switch(role){
@@ -49,7 +86,7 @@ async function findById(role,userId, id){
 }
 
 async function findByIdAdmin(id){
-    let result = await Order.findById(id).populate("client", "firstname lastname phonenumber")
+    let result = await Order.findById(id).populate("client", "firstname lastname phoneNumber")
     .populate(
         {
             path: 'restaurantItems',
@@ -58,7 +95,7 @@ async function findByIdAdmin(id){
             }
         }
     );
-    if(result.preparationDate&&result.deliveryGuy){
+    if(result.preparationDate&&!result.deliveryGuy){
         let deliveries = await User.find({userType: 'delivery'});
         return {
             order: result,
@@ -69,8 +106,8 @@ async function findByIdAdmin(id){
 }
 
 async function findByIdDelivery(userId, id){
-    let order = await Order.find({deliveryGuy: mongoose.Types.ObjectId(userId), _id: mongoose.Types.ObjectId(id)})
-    .populate("client", "firstname lastname phonenumber")
+    let order = await Order.find({deliveryGuy:  new mongoose.Types.ObjectId(userId), _id:  new  mongoose.Types.ObjectId(id)})
+    .populate("client", "firstname lastname phoneNumber")
     .populate(
         {
             path: 'restaurantItems',
@@ -86,7 +123,7 @@ async function findByIdDelivery(userId, id){
 }
 
 async function findByIdCustomer(userId, id){
-    let order = await Order.find({client: mongoose.Types.ObjectId(userId), _id: mongoose.Types.ObjectId(id)});
+    let order = await Order.find({client:  new  mongoose.Types.ObjectId(userId), _id:  new  mongoose.Types.ObjectId(id)});
 
     if(order.length > 0){
         return order[0];

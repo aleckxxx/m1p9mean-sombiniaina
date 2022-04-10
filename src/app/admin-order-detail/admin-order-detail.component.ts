@@ -32,6 +32,7 @@ export class AdminOrderDetailComponent implements OnInit {
           this.errors = data["data"]["errors"];
         }
       }
+      this.activeModal.close();
     }
     let notokay = (err:any)=>{
         console.log(err);
@@ -44,10 +45,11 @@ export class AdminOrderDetailComponent implements OnInit {
     this.orderMin = order;
     let okay = (data:any)=>{
       if(data["status"]==200){
+        console.log(data);
         this.loading = false;
         if(data["data"]["deliveries"]){
           this.order = data["data"]["order"];
-          this.deliveries = data["data"];
+          this.deliveries = data["data"]["deliveries"];
         }
         else{
           this.order = data["data"];
