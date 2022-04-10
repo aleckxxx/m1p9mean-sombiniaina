@@ -1,0 +1,16 @@
+
+<div class="banner">
+    <img class="banner-img" src="assets/images/order-banner.jpg"/>
+    <div class="banner-content">
+        <div class="banner-title">mes commandes à livrer</div>
+    </div>       
+</div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-3 categories">
+        </div>
+        <div class="col-md-9 pl-5 pt-2">
+            <app-delivery-order-detail *ngFor="let order of orders" [order]="order"></app-delivery-order-detail>
+        </div>
+    </div>
+</div>

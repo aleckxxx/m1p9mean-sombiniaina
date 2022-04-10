@@ -1,0 +1,49 @@
+<div class="order-id" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Commande {{order.number}}
+</div>
+<div class="order-detail" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="adress-info">
+        <div class="adress-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        {{order.deliveryAdress}}
+    </div>
+    <div class="order-client-info">
+        <div class="adress-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+        <div class="client-info">
+            <div>{{order.client.firstname}} {{order.client.lastname}}</div>
+            <div>{{order.client.phoneNumber}}</div>
+        </div>
+    </div>
+    <div class="cart-items">
+        <div class="cart-items-header">
+            <label class="text-beginning">Libellé</label>
+            <label class="text-end">Prix</label>
+            <label class="text-center">Quantité</label>
+            <label class="text-end">Sous-total</label>
+        </div>
+        <div *ngFor="let restaurantItem of order.restaurantItems">
+            <div *ngFor="let item of restaurantItem.items">
+                <div class="cart-item-name text-beginning">{{item.dish.name}}</div>
+                <div class="cart-item-price text-end">>{{item.dish.price | number:'':'en'}}</div>
+                <div class="cart-item-quantity">
+                    {{item.quantity}}
+                </div>
+                <div class="cart-item-subtotal text-end">{{getSubtotal(item.dish.price,item.quantity) | number:'':'en' }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row cart-resume">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+          <div class="cart-resume-row">
+            <label>Frais de livraison</label>
+            <label>{{order.deliveryFee  | number:'':'en'}}</label>
+          </div>
+          <div class="cart-resume-row">
+            <label class="bold">Total</label>
+            <label class="bold">{{order.total | number:'':'en'}}</label>
+          </div>
+        </div>
+        <button class="btn btn-color-scheme" (click)="finishOrder()">Livré</button>
+    </div>
+</div>

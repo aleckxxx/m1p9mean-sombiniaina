@@ -41,6 +41,8 @@ import { DishupdateComponent } from './dishupdate/dishupdate.component';
 import { AdminOrderViewerComponent } from './admin-order-viewer/admin-order-viewer.component';
 import { AdminOrderDetailComponent } from './admin-order-detail/admin-order-detail.component';
 import { AssignDeliveryComponent } from './assign-delivery/assign-delivery.component';
+import { DeliveryOrderListComponent } from './delivery-order-list/delivery-order-list.component';
+import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-order-detail.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { AssignDeliveryComponent } from './assign-delivery/assign-delivery.compo
     DishupdateComponent,
     AdminOrderViewerComponent,
     AdminOrderDetailComponent,
-    AssignDeliveryComponent
+    AssignDeliveryComponent,
+    DeliveryOrderListComponent,
+    DeliveryOrderDetailComponent
   ],
   imports: [
     BrowserModule,

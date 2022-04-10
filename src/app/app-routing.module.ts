@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountvalidationComponent } from './accountvalidation/accountvalidation.component';
 import { AdminOrderViewerComponent } from './admin-order-viewer/admin-order-viewer.component';
+import { DeliveryOrderListComponent } from './delivery-order-list/delivery-order-list.component';
 import { DetailcategoryComponent } from './detailcategory/detailcategory.component';
 import { DishcategorycreateComponent } from './dishcategorycreate/dishcategorycreate.component';
 import { DishcategorylistComponent } from './dishcategorylist/dishcategorylist.component';
@@ -55,6 +56,17 @@ const routes: Routes = [
         component: OrderListComponent,
         canActivate: [AuthGuard],
         data:{roles: [Role.Customer] }
+      }
+    ]
+  },
+  {
+    path:'delivery',
+    children:[
+      {
+        path: '',
+        component: DeliveryOrderListComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.DeliveryGuy] }
       }
     ]
   },
