@@ -13,7 +13,7 @@
       </ul>
       <ul class="navbar-nav mr-auto" *ngIf="isAuthenticated()&&isAuthorized('restaurant')">
         <li class="nav-item"><a>Dashboard</a></li>
-        <li class="nav-item"><a>Commandes</a></li>
+        <li class="nav-item"><a [routerLink]="['/restaurantmanager']">Commandes</a></li>
         <li class="nav-item"><a [routerLink]="['/restaurantmanager/dishcategories']">Gestion plats</a></li>
         <li class="nav-item"><a (click)="logout()">Se deconnecter</a></li>
       </ul>

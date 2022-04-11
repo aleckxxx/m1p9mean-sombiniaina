@@ -37,13 +37,13 @@ export class LoginComponent implements OnInit {
   }
   navigateAccordingToRole(){
     let role = this.authService.getRole();
-    if(Role.Admin){
+    if(role===Role.Admin){
       this.route.navigateByUrl("/admin");
     }
-    else if(Role.Restaurant){
+    else if(role===Role.Restaurant){
       this.route.navigateByUrl("/restaurantmanager");
     }
-    else if(Role.DeliveryGuy){
+    else if(role===Role.DeliveryGuy){
       this.route.navigateByUrl("/delivery");
     }
     else{
