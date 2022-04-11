@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalsignupComponent } from '../modalsignup/modalsignup.component';
 import { AuthenticationService } from '../_services/authentication.service';
 import { SignupService } from '../_services/signup.service';
 @Component({
@@ -10,7 +12,7 @@ import { SignupService } from '../_services/signup.service';
 })
 export class SignupFormComponent implements OnInit {
   errors: any = {};
-  constructor(private router: Router,private signupService: SignupService, private authService: AuthenticationService) { }
+  constructor(private router: Router,private signupService: SignupService, private authService: AuthenticationService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     if(this.authService.isAuthenticated()){
@@ -22,8 +24,7 @@ export class SignupFormComponent implements OnInit {
     if(form.valid){
       let okay = (data:any)=>{
         if(data["status"]==200){
-          alert("Veuillez regarder votre email pour vérifier votre email.");
-          this.router.navigateByUrl("/");
+          this.modalService.open(ModalsignupComponent);
         }
         else{
           if(data["data"]["errors"]){
