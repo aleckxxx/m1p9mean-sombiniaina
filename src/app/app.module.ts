@@ -47,6 +47,7 @@ import { RestaurantFormComponent } from './restaurant-form/restaurant-form.compo
 import { RestaurantCreateComponent } from './restaurant-create/restaurant-create.component';
 import { RestaurantUpdateComponent } from './restaurant-update/restaurant-update.component';
 import { RestaurantAdminListComponent } from './restaurant-admin-list/restaurant-admin-list.component';
+import { ModalsignupComponent } from './modalsignup/modalsignup.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { RestaurantAdminListComponent } from './restaurant-admin-list/restaurant
     RestaurantFormComponent,
     RestaurantCreateComponent,
     RestaurantUpdateComponent,
-    RestaurantAdminListComponent
+    RestaurantAdminListComponent,
+    ModalsignupComponent
   ],
   imports: [
     BrowserModule,
