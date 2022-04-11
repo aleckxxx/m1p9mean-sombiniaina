@@ -1,7 +1,7 @@
 const Restaurant = require('../models/restaurant.model');
 const restaurantHelper = require('../helpers/restaurant.helper');
 const mongoose = require('mongoose');
-const limit = 2;
+const limit = 3;
 
 
 module.exports ={
