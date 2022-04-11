@@ -43,7 +43,7 @@ async function getAdminOrders(){
     let pending = await Order.find({preparationDate: {$exists: false}}).select("_id number");
     let ontheway = await Order.find({deliveryGuy: {$exists: true}, deliveryDate:  {$exists: false}}).select("_id number");
     let prepared =await Order.find({preparationDate: {$exists: true}, deliveryGuy:{$exists: false}}).select("_id number");
-    let finished = await Order.find({preparationDate: {$exists: true},created_at: {$gte: dateMin , $lte: dateMax }});
+    let finished = await Order.find({deliveryDate: {$exists: true},created_at: {$gte: dateMin , $lte: dateMax }});
     return {
         pending: pending,
         ontheway: ontheway,

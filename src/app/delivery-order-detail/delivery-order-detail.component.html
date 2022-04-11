@@ -23,7 +23,7 @@
         <div *ngFor="let restaurantItem of order.restaurantItems">
             <div *ngFor="let item of restaurantItem.items">
                 <div class="cart-item-name text-beginning">{{item.dish.name}}</div>
-                <div class="cart-item-price text-end">>{{item.dish.price | number:'':'en'}}</div>
+                <div class="cart-item-price text-end">{{item.dish.price | number:'':'en'}}</div>
                 <div class="cart-item-quantity">
                     {{item.quantity}}
                 </div>
