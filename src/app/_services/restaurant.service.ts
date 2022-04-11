@@ -8,8 +8,19 @@ import { environment } from 'src/environments/environment';
 export class RestaurantService {
   constructor(private http: HttpClient) { }
 
-  search(query:string='',page=1){
-    return this.http.get(`${environment.apiUrl}/restaurants?page=${page}&query=${query}`);
+  search(query:string='',page=1,cuisine=''){
+    return this.http.get(`${environment.apiUrl}/restaurants?${this.formatRequest(query,page,cuisine)}`);
+  }
+
+  private formatRequest(query:string, page: number, cuisine: string){
+    let str = `page=${page}`;
+    if(query!==''){
+      str+=`&query=${query}`
+    }
+    if(cuisine!==''){
+      str+=`&cuisine=${cuisine}`;
+    }
+    return str;
   }
 
   getDetail(restaurantId: string){

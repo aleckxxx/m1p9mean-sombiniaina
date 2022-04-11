@@ -1,7 +1,7 @@
 const Restaurant = require('../models/restaurant.model');
 const restaurantHelper = require('../helpers/restaurant.helper');
 const mongoose = require('mongoose');
-const limit = 9;
+const limit = 2;
 
 
 module.exports ={
@@ -18,8 +18,8 @@ async function insert(body){
    let resto = new Restaurant(body);
    await resto.save();
 }
-async function searchRestaurant(stringQuery,page=1){
-    const query = restaurantHelper.getSearchQuery(stringQuery);
+async function searchRestaurant(stringQuery='',cuisine,page=1){
+    const query = restaurantHelper.getSearchQuery(stringQuery,cuisine);
     const document = await Restaurant.paginate(query,{offset: (limit *(page-1)), limit: limit });
     return {
         restaurants: document.docs,

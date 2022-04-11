@@ -18,6 +18,6 @@ export class PaginationComponent implements OnInit {
   }
 
   sendPageNumber(i:number){
-    this.sendPage.emit(i);
+    this.sendPage.emit(i+1);
   }
 }

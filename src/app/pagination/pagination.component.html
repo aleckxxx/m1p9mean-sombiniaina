@@ -1,5 +1,3 @@
 <ul class="pagination">
-    <li *ngIf="page!=1" class="page-item">précedent</li>
     <li *ngFor="let item of counter(totalPage); let i = index;" class="page-item" (click)="sendPageNumber(i)" [ngClass]="{'active-page': i +1 === page}"><a class="page-link">{{i+1}}</a></li>
-    <li *ngIf="totalPage!=page" class="page-item">suivant</li>
 </ul>

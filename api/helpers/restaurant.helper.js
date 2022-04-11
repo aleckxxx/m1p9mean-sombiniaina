@@ -10,19 +10,16 @@ module.exports = {
     getSearchQuery,
     registerRestaurantValidation
 };
-function getSearchQuery(stringQuery){
-    if(!stringQuery || stringQuery === ''){
-        return {};
+function getSearchQuery(stringQuery,cuisine){
+    let query = {};
+    if(stringQuery && stringQuery !== ''){
+        query.name = {
+            $regex: '.*'+stringQuery+".*",
+            $options: "i"
+        };
     }
-    var query = {
-        "$or": [
-           {
-               name:{
-                   $regex: '.*'+stringQuery+".*",
-                   $options: "i"
-               }
-           }
-        ]
+    if(cuisine){
+        query.cuisine = cuisine;
     }
     return query; 
 }

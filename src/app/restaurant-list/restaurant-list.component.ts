@@ -11,10 +11,37 @@ export class RestaurantListComponent implements OnInit {
   searchResult: any;
   query='';
   page = 1;
+  cuisine = '';
+  cuisines = [];
+
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
+    this.getCuisineType();
    this.search(); 
+  }
+  getCuisineType(){
+    let okay = (data:any)=>{
+      if(data["status"]==200){
+        this.cuisines = data["data"];
+      }
+      else{
+        console.log(data["message"]);
+      }
+    }
+    let notokay = (err:any)=>{
+        console.log(err);
+    }
+    this.restaurantService.getCuisineTypes().subscribe(okay,notokay);
+  }
+  changeCuisine(e: any){
+    if(e.target.value === 'tous'){
+      this.cuisine = '';
+    }
+    else{
+      this.cuisine = e.target.value;
+    }
+    this.search(this.query);
   }
   search(query:string=''){
     this.loading = true;
@@ -31,8 +58,9 @@ export class RestaurantListComponent implements OnInit {
     let notokay = (err:any)=>{
         console.log(err);
     }
-    this.restaurantService.search(query,this.page).subscribe(okay,notokay);
+    this.restaurantService.search(query,this.page, this.cuisine).subscribe(okay,notokay);
   }
+
   changePage(i:number){
     this.page = i;
     this.search(this.query);

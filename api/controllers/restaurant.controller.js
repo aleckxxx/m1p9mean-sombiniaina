@@ -19,7 +19,7 @@ router.put("/:id",authorize("admin"), uploadHelper, cloudinaryConfig, update);
 
 async function searchRestaurant(req,res,next){
     let {query='',page=1} = req.query;
-    restaurantService.searchRestaurant(query,page).then((response)=>{
+    restaurantService.searchRestaurant(query,req.query.cuisine,page).then((response)=>{
         res.json({status: 200, data: response });
     }).catch((err)=>{
         next(err);

@@ -16,6 +16,9 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrders();
+    interval(10000).subscribe(()=>{
+      this.getOrders();
+    })
   }
 
   getOrders(){
