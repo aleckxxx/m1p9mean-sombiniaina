@@ -7,36 +7,17 @@ const restaurantSchema = new mongoose.Schema({
         type: String
     },
     picture:{
-        required: true,
+        required: false,
         type: String
     },
     adress:{
         required: true,
         type: String
     },
-    businessDays:[
-        {
-           day:{
-               required: true,
-               type: String
-           },
-           opening:{
-               type: String,
-               min: 0,
-               max: 24
-           },
-           closing: {
-                type: String,
-                min: 0,
-                max: 24
-           }
-        }
-    ],
-    cuisine:[
-        {
-            type: String
-        }
-    ]
+    cuisine:{
+        required: true,
+        type: String
+    }
 });
 
 restaurantSchema.plugin(mongoosePaginate);
