@@ -13,8 +13,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { RestaurantAdminListComponent } from './restaurant-admin-list/restaurant-admin-list.component';
+import { RestaurantCreateComponent } from './restaurant-create/restaurant-create.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RestaurantOrdersComponent } from './restaurant-orders/restaurant-orders.component';
+import { RestaurantUpdateComponent } from './restaurant-update/restaurant-update.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { Role } from './_models/Role';
@@ -135,7 +138,25 @@ const routes: Routes = [
         component: AdminOrderViewerComponent,
         canActivate: [AuthGuard],
         data:{roles: [Role.Admin] }
-      }
+      },
+      {
+        path: 'restaurants',
+        component: RestaurantAdminListComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.Admin] }
+      },
+      {
+        path: 'restaurants/new',
+        component: RestaurantCreateComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.Admin] }
+      },
+      {
+        path: 'restaurants/update/:id',
+        component: RestaurantUpdateComponent,
+        canActivate: [AuthGuard],
+        data:{roles: [Role.Admin] }
+      },
     ]
   }
 ];

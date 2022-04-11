@@ -43,6 +43,10 @@ import { AdminOrderDetailComponent } from './admin-order-detail/admin-order-deta
 import { AssignDeliveryComponent } from './assign-delivery/assign-delivery.component';
 import { DeliveryOrderListComponent } from './delivery-order-list/delivery-order-list.component';
 import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-order-detail.component';
+import { RestaurantFormComponent } from './restaurant-form/restaurant-form.component';
+import { RestaurantCreateComponent } from './restaurant-create/restaurant-create.component';
+import { RestaurantUpdateComponent } from './restaurant-update/restaurant-update.component';
+import { RestaurantAdminListComponent } from './restaurant-admin-list/restaurant-admin-list.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,11 @@ import { DeliveryOrderDetailComponent } from './delivery-order-detail/delivery-o
     AdminOrderDetailComponent,
     AssignDeliveryComponent,
     DeliveryOrderListComponent,
-    DeliveryOrderDetailComponent
+    DeliveryOrderDetailComponent,
+    RestaurantFormComponent,
+    RestaurantCreateComponent,
+    RestaurantUpdateComponent,
+    RestaurantAdminListComponent
   ],
   imports: [
     BrowserModule,

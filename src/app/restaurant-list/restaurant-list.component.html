@@ -40,12 +40,11 @@
                     <p class="restaurant-name">{{restaurant.name}}</p>
                     <div class="restaurant-information">
                         <p class="restaurant-opening-day"><i class="fa fa-calendar-o"></i>  <span class="small-lighter">{{restaurant.adress}}</span> </p>
-                        <p class="restaurant-opening-hour"><i class="fa fa-clock-o"></i>  <span class="small-lighter">{{getStatut(restaurant.businessDays)}}</span></p>
                     </div>
                     <button class="btn btn-round btn-side btn-black" [routerLink]="['/restaurantdetail/',restaurant._id]"><i class="fa fa-arrow-right"></i></button>
                 </div>
             </div>
-            <app-pagination [totalPage]="searchResult.totalPages" [page]="searchResult.page"></app-pagination>
+            <app-pagination [totalPage]="searchResult.totalPages" (sendPage)="changePage($event)" [page]="searchResult.page"></app-pagination>
         </div>
     </div>
 </div>

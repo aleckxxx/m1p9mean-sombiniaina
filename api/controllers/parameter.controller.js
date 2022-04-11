@@ -6,6 +6,8 @@ module.exports = router;
 
 router.get("/deliveryfee",getDeliveryFee)
 
+router.get("/cuisine", getCuisine);
+
 async function getDeliveryFee(req,res,next){
     parameterService.getDeliveryPrice().then((delivery)=>{
         res.json({status: 200, data: delivery  });
@@ -14,3 +16,10 @@ async function getDeliveryFee(req,res,next){
     });
 }
 
+async function getCuisine(req,res,next){
+    parameterService.getCuisineTypes().then((delivery)=>{
+        res.json({status: 200, data: delivery  });
+    }).catch((err)=>{
+        next(err);
+    });
+}
